@@ -1,11 +1,36 @@
 {
   "name": "librarymanagementsystem",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "init": "npm install",
+    "build": "tsc",
+    "dev": "tsc --watch & nodemon dist",
+    "test": "tsc && mocha dist/**/*.spec.js",
+    "lint": "eslint src --ext ts",
+    "tsc": "tsc",
+    "start": "node server/index.ts"
   },
-  "author": "Shishir Kumar Mishra",
-  "license": "ISC"
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "ejs": "~2.5.7",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "nodemon": "^1.17.5"
+  },
+  "description": "Dummy",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shishir28/LibraryManagementSystem.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shishir28/LibraryManagementSystem/issues"
+  },
+  "homepage": "https://github.com/shishir28/LibraryManagementSystem#readme"
 }
