@@ -1,11 +1,12 @@
-
 import * as bodyParser from "body-parser";
 import * as express from "express";
 import * as path from "path";
 import * as serveStatic from "serve-static";
 // import * as cors from "cors";
 import { BookController } from './book.resource';
-
+import { BranchController } from './branch.resource';
+import { BorrowerController } from './borrower.resource';
+import { PublisherController } from './publisher.resource';
 
 class API {
     public api: express.Express;
@@ -26,6 +27,15 @@ class API {
         let bookController = new BookController()
         bookController.addRoutes(this.api);
 
+        let branchController = new BranchController()
+        branchController.addRoutes(this.api);
+
+        let borrowerController = new BorrowerController()
+        borrowerController.addRoutes(this.api);
+
+        let publisherController = new PublisherController()
+        publisherController.addRoutes(this.api);
+
         router.get('/', (req, res) => {
             res.sendFile(path.join(publicDir, '/index.html'));
         });
@@ -38,7 +48,7 @@ class API {
         this.api.use(bodyParser.urlencoded({
             extended: true
         }));
-        
+
         this.api.use(bodyParser.json());
     }
 }
