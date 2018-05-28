@@ -5,7 +5,7 @@ import { bookRoutes } from './demo/book/book-routing.module';
 import { borrowerRoutes } from './demo/borrower/borrower-routing.module';
 import { branchRoutes } from './demo/branch/branch-routing.module';
 import { publisherRoutes } from './demo/publisher/publisher-routing.module';
-
+import { authorRoutes } from './demo/author/author-routing.module';
 
 
 
@@ -22,7 +22,9 @@ const routes: Routes = [
       ...bookRoutes,
       ...borrowerRoutes,
       ...branchRoutes,
-      ...publisherRoutes
+      ...publisherRoutes,
+      ...authorRoutes,
+      
     ]
   }
 ];

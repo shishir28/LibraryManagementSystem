@@ -15,9 +15,7 @@ import { bookConfig } from './demo/book/book.module';
 import { borrowerConfig } from './demo/borrower/borrower.module';
 import { branchConfig } from './demo/branch/branch.module';
 import { publisherConfig } from './demo/publisher/publisher.module';
-
-
-
+import { authorConfig } from './demo/author/author.module';
 import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
 
 
@@ -27,9 +25,7 @@ import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
     ...borrowerConfig.declarations,
     ...branchConfig.declarations,
     ...publisherConfig.declarations,
-    
-    
-    
+    ...authorConfig.declarations,
   ],
   imports: [
     CommonModule,
@@ -40,6 +36,7 @@ import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
     ...bookConfig.imports,
     ...borrowerConfig.imports,
     ...publisherConfig.imports,
+    ...authorConfig.imports,
     
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
@@ -49,7 +46,7 @@ import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
     ...borrowerConfig.exports,
     ...branchConfig.exports,
     ...publisherConfig.exports,
-    
+    ...authorConfig.exports,
   ],
   providers: [
     {
@@ -61,6 +58,7 @@ import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
     ...borrowerConfig.providers,
     ...branchConfig.providers,   
     ...publisherConfig.providers,
+    ...authorConfig.providers,
     
   ],
   bootstrap: [AppComponent]

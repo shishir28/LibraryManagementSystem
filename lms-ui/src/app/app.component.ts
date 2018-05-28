@@ -57,6 +57,13 @@ export class AppComponent {
       position: 10,
       pathMatchExact: true
     });
+    menu.push({
+      name: 'Authors',
+      routeOrFunction: '/authors',
+      icon: 'description',
+      position: 10,
+      pathMatchExact: true
+    });
     // Send all created Items to SidenavService
     menu.forEach(item => sidenavService.addItem(item));
   }
