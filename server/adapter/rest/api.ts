@@ -3,10 +3,10 @@ import * as express from "express";
 import * as path from "path";
 import * as serveStatic from "serve-static";
 // import * as cors from "cors";
-import { BookController } from './book.resource';
-import { BranchController } from './branch.resource';
-import { BorrowerController } from './borrower.resource';
-import { PublisherController } from './publisher.resource';
+import { BookController } from './book.controller';
+import { BranchController } from './branch.controller';
+import { BorrowerController } from './borrower.controller';
+import { PublisherController } from './publisher.controller';
 
 class API {
     public api: express.Express;

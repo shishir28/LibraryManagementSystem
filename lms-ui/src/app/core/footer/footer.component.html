@@ -1,0 +1,13 @@
+<div class="footer" fxLayout="row" *ngIf="visible">
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px" fxFlex="grow">    
+
+    <div class="name" fxHide fxShow.gt-sm>
+      Fictitious Library Management System
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <button type="button" mat-icon-button (click)="visible = false">
+      <mat-icon class="close">close</mat-icon>
+    </button>
+  </div>
+</div>

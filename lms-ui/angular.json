@@ -3,12 +3,10 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "lms-ui": {
+    "Fury": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "app",
-      "schematics": {},
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -16,25 +14,25 @@
             "outputPath": "../dist/public",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles"
+              ]
+            },
             "assets": [
+              "src/assets",
               "src/favicon.ico",
-              "src/assets"
+              "src/manifest.json"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -43,41 +41,50 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "lms-ui:build"
+            "browserTarget": "Fury:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "lms-ui:build:production"
+              "browserTarget": "Fury:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "lms-ui:build"
+            "browserTarget": "Fury:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "src/test.ts",
+            "karmaConfig": "./karma.conf.js",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
-            "styles": [
-              "styles.css"
-            ],
             "scripts": [],
+            "styles": [
+              "src/styles.scss"
+            ],
             "assets": [
+              "src/assets",
               "src/favicon.ico",
-              "src/assets"
+              "src/manifest.json"
             ]
           }
         },
@@ -95,21 +102,24 @@
         }
       }
     },
-    "lms-ui-e2e": {
-      "root": "e2e/",
+    "Fury-e2e": {
+      "root": "",
+      "sourceRoot": "",
       "projectType": "application",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "lms-ui:serve"
+            "protractorConfig": "./protractor.conf.js",
+            "devServerTarget": "Fury:serve"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": "e2e/tsconfig.e2e.json",
+            "tsConfig": [
+              "e2e/tsconfig.e2e.json"
+            ],
             "exclude": [
               "**/node_modules/**"
             ]
@@ -118,5 +128,19 @@
       }
     }
   },
-  "defaultProject": "lms-ui"
+  "defaultProject": "Fury",
+  "schematics": {
+    "@schematics/angular:component": {
+      "spec": false,
+      "prefix": "fury",
+      "styleext": "scss"
+    },
+    "@schematics/angular:directive": {
+      "spec": false,
+      "prefix": "fury"
+    },
+    "@schematics/angular:service": {
+      "spec": false
+    }
+  }
 }
