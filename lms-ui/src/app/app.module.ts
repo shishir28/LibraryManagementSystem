@@ -11,42 +11,27 @@ import { httpFactory } from './shared/httpFactory';
 import { RoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { bookConfig } from './main/book/book.module';
-import { borrowerConfig } from './main/borrower/borrower.module';
-import { branchConfig } from './main/branch/branch.module';
-import { publisherConfig } from './main/publisher/publisher.module';
-import { authorConfig } from './main/author/author.module';
+
 import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
+import { MainModule } from './main/main.module';
 
 
 @NgModule({
-  declarations: [AppComponent,
-    ...bookConfig.declarations,
-    ...borrowerConfig.declarations,
-    ...branchConfig.declarations,
-    ...publisherConfig.declarations,
-    ...authorConfig.declarations,
-  ],
+  declarations: [AppComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
     HttpModule,
     CoreModule,
     RoutingModule,
-    ...bookConfig.imports,
-    ...borrowerConfig.imports,
-    ...publisherConfig.imports,
-    ...authorConfig.imports,
+    MainModule,
+
     
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
   ],
 
   exports: [
-    ...bookConfig.exports,
-    ...borrowerConfig.exports,
-    ...branchConfig.exports,
-    ...publisherConfig.exports,
-    ...authorConfig.exports,
+  
   ],
   providers: [
     {
@@ -54,11 +39,7 @@ import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
       useFactory: httpFactory,
       deps: [XHRBackend, RequestOptions],
     },
-    ...bookConfig.providers,
-    ...borrowerConfig.providers,
-    ...branchConfig.providers,   
-    ...publisherConfig.providers,
-    ...authorConfig.providers,
+ 
     
   ],
   bootstrap: [AppComponent]
