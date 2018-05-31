@@ -9,6 +9,8 @@ import { PageModule } from '../../core/common/page/page.module';
 import { BookService } from './shared/services/book.service'
 
 import { BookListComponent } from './bookList.component';
+import { NewBookComponent } from './new-book.component';
+
 
 export const bookConfig: NgModule = {
   imports: [
@@ -20,8 +22,10 @@ export const bookConfig: NgModule = {
     PageModule,
     BreadcrumbsModule
   ],
-  declarations: [BookListComponent],
-  exports: [BookListComponent],
+  declarations: [BookListComponent,NewBookComponent],
+  exports: [BookListComponent,NewBookComponent],
+  entryComponents: [NewBookComponent],
+
   providers: [
     BookService
   ]

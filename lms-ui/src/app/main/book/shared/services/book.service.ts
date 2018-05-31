@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { httpResultObject } from '../../../../shared/httpResultObject';
+
 
 import { Book } from '../book.model';
 
@@ -13,8 +15,18 @@ export class BookService {
     }
 
     getAllBooks(): Observable<Book[]> {
-        return this.http.get((this.location.prepareExternalUrl("api/book" )))
-        .map(this.extractData);    
+        return this.http.get(this.location.prepareExternalUrl("api/book"))
+            .map(this.extractData);
+    }
+
+    addBook(book): Observable<httpResultObject<any>> {
+        return this.http.post(this.location.prepareExternalUrl("api/book"), JSON.stringify(book))
+            .map(res => {
+                let result = new httpResultObject<any>();
+                result.statusCode = res.status;
+                result.responseBody = res.json() ;
+                return result;
+            });
     }
 
     private extractData(res: Response) {

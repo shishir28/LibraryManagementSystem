@@ -8,6 +8,7 @@ import { ListColumn } from '../../core/common/list/list-column.model';
 import { fadeOutAnimation } from '../../core/common/route.animation';
 import { Book } from './shared/book.model';
 import { BookService } from './shared/services/book.service'
+import { NewBookComponent } from './new-book.component';
 
 @Component({
   selector: 'lms-bookList',
@@ -17,7 +18,7 @@ import { BookService } from './shared/services/book.service'
   host: { '[@fadeOutAnimation]': 'true' }
 })
 export class BookListComponent implements OnInit, AfterViewInit, OnDestroy {
- 
+
   subject$: ReplaySubject<Book[]> = new ReplaySubject<Book[]>(1);
   data$: Observable<Book[]> = this.subject$.asObservable();
   books: Book[];
@@ -35,7 +36,7 @@ export class BookListComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private dialog: MatDialog, private bookService:BookService ) {
+  constructor(private dialog: MatDialog, private bookService: BookService) {
   }
 
   get visibleColumns() {
@@ -43,13 +44,29 @@ export class BookListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
 
+  createBook() {
+    this.dialog.open(NewBookComponent).afterClosed().subscribe((book: Book) => {
+      if (book) {
+        this.bookService.addBook(book)
+          .subscribe(response => {
+            if (response.statusCode == 201) {
+              let book = response.responseBody as Book;
+              this.books.push(book);
+              this.subject$.next(this.books);
+            } else if (response.statusCode == 412) {
+              alert('oops');
+            }
+          });
+      }
+    });
+  }
+
   ngOnInit() {
     this.bookService.getAllBooks()
-    .subscribe(records=> {
-      this.books  =  records.map(record=> new Book(records));
-      this.subject$.next(records);
-    });
-  
+      .subscribe(records => {
+        this.books = records.map(record => new Book(records));
+        this.subject$.next(records);
+      });
 
     this.dataSource = new MatTableDataSource();
 

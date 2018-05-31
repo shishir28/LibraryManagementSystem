@@ -30,6 +30,7 @@ import { authorConfig } from './author/author.module';
         ...authorConfig.declarations,
     ],
     entryComponents: [
+        ...bookConfig.entryComponents,
 
     ],
     exports: [
