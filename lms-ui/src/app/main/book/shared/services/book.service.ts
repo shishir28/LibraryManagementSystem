@@ -28,6 +28,15 @@ export class BookService {
                 return result;
             });
     }
+    editBook(book:Book): Observable<httpResultObject<any>> {        
+        return this.http.put(this.location.prepareExternalUrl("api/book/"+book.id), JSON.stringify(book))
+            .map(res => {
+                let result = new httpResultObject<any>();
+                result.statusCode = res.status;
+                result.responseBody = res.json() ;
+                return result;
+            });
+    }
 
     private extractData(res: Response) {
         let body = res.json();

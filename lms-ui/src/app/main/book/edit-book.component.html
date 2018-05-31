@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Book</h2>
+
+<form [formGroup]="bookForm" (ngSubmit)="save()">
+  <mat-dialog-content>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+      <mat-form-field fxFlex>
+        <mat-placeholder>Title</mat-placeholder>
+        <input type="text" formControlName="txtTitle" matInput>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+      <mat-form-field fxFlex>
+        <mat-placeholder>Publisher</mat-placeholder>
+        <input type="text" formControlName="txtPublisherName" matInput>
+      </mat-form-field>
+    </div>
+
+  </mat-dialog-content>
+  <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button mat-button [disabled]="!bookForm.valid">UPDATE BOOK</button>
+  </mat-dialog-actions>
+</form>

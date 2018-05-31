@@ -10,6 +10,8 @@ import { BookService } from './shared/services/book.service'
 
 import { BookListComponent } from './bookList.component';
 import { NewBookComponent } from './new-book.component';
+import { EditBookComponent } from './edit-book.component';
+
 
 
 export const bookConfig: NgModule = {
@@ -22,9 +24,9 @@ export const bookConfig: NgModule = {
     PageModule,
     BreadcrumbsModule
   ],
-  declarations: [BookListComponent,NewBookComponent],
-  exports: [BookListComponent,NewBookComponent],
-  entryComponents: [NewBookComponent],
+  declarations: [BookListComponent, NewBookComponent, EditBookComponent],
+  exports: [BookListComponent, NewBookComponent, EditBookComponent],
+  entryComponents: [NewBookComponent, EditBookComponent],
 
   providers: [
     BookService

@@ -9,6 +9,7 @@ import { fadeOutAnimation } from '../../core/common/route.animation';
 import { Book } from './shared/book.model';
 import { BookService } from './shared/services/book.service'
 import { NewBookComponent } from './new-book.component';
+import { EditBookComponent } from './edit-book.component';
 
 @Component({
   selector: 'lms-bookList',
@@ -25,9 +26,11 @@ export class BookListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   @Input()
   columns: ListColumn[] = [
-    { name: 'id', property: 'id', visible: true },
-    { name: 'Title', property: 'Title', visible: true },
-    { name: 'Publisher Name', property: 'PublisherName', visible: true }
+    { name: 'Checkbox', property: 'checkbox', visible: false },
+    { name: 'id', property: 'id', visible: true, isModelProperty: true },
+    { name: 'Title', property: 'Title', visible: true, isModelProperty: true },
+    { name: 'Publisher Name', property: 'PublisherName', visible: true, isModelProperty: true },
+    { name: 'Actions', property: 'actions', visible: true },
 
   ] as ListColumn[];
   pageSize = 10;
@@ -43,6 +46,28 @@ export class BookListComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.columns.filter(column => column.visible).map(column => column.property);
   }
 
+  updateBook(book) {
+    this.dialog.open(EditBookComponent, {
+      data: book
+    }).afterClosed().subscribe((book) => {
+      debugger;
+
+      if (book) {
+        this.bookService.editBook(book)
+          .subscribe(response => {
+            if (response.statusCode == 204) {
+             
+              const index = this.books.findIndex((existingBook) => existingBook.id === book.id);
+              this.books[index] = book;
+              this.subject$.next(this.books);
+            } else if (response.statusCode == 412) {
+              alert('oops');
+            }
+          });
+      }
+    });
+
+  }
 
   createBook() {
     this.dialog.open(NewBookComponent).afterClosed().subscribe((book: Book) => {
