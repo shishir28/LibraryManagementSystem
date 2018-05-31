@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LayoutComponent } from './core/layout/layout.component';
-import { bookRoutes } from './demo/book/book-routing.module';
-import { borrowerRoutes } from './demo/borrower/borrower-routing.module';
-import { branchRoutes } from './demo/branch/branch-routing.module';
-import { publisherRoutes } from './demo/publisher/publisher-routing.module';
-import { authorRoutes } from './demo/author/author-routing.module';
+import { bookRoutes } from './main/book/book-routing.module';
+import { borrowerRoutes } from './main/borrower/borrower-routing.module';
+import { branchRoutes } from './main/branch/branch-routing.module';
+import { publisherRoutes } from './main/publisher/publisher-routing.module';
+import { authorRoutes } from './main/author/author-routing.module';
 
 
 
@@ -16,7 +16,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: 'app/demo/dashboard/dashboard.module#DashboardModule',
+        loadChildren: 'app/main/dashboard/dashboard.module#DashboardModule',
         pathMatch: 'full'
       },
       ...bookRoutes,

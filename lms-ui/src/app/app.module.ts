@@ -11,11 +11,11 @@ import { httpFactory } from './shared/httpFactory';
 import { RoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { bookConfig } from './demo/book/book.module';
-import { borrowerConfig } from './demo/borrower/borrower.module';
-import { branchConfig } from './demo/branch/branch.module';
-import { publisherConfig } from './demo/publisher/publisher.module';
-import { authorConfig } from './demo/author/author.module';
+import { bookConfig } from './main/book/book.module';
+import { borrowerConfig } from './main/borrower/borrower.module';
+import { branchConfig } from './main/branch/branch.module';
+import { publisherConfig } from './main/publisher/publisher.module';
+import { authorConfig } from './main/author/author.module';
 import { HttpModule, Http, XHRBackend, RequestOptions } from '@angular/http';
 
 
