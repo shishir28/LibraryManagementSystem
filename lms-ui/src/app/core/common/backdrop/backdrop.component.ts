@@ -5,7 +5,7 @@ import { SidenavState } from '../../sidenav/sidenav-state.enum';
 import { SidenavService } from '../../sidenav/sidenav.service';
 
 @Component({
-  selector: 'fury-backdrop',
+  selector: 'lms-backdrop',
   templateUrl: './backdrop.component.html',
   styleUrls: ['./backdrop.component.scss']
 })

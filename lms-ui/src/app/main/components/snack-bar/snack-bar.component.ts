@@ -4,7 +4,7 @@ import escape from 'lodash-es/escape';
 import { routeAnimation } from '../../../core/common/route.animation';
 
 @Component({
-  selector: 'fury-snack-bar',
+  selector: 'lms-snack-bar',
   templateUrl: './snack-bar.component.html',
   styleUrls: ['./snack-bar.component.scss'],
   host: {

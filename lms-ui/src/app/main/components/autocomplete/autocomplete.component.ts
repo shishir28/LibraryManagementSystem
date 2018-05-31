@@ -6,7 +6,7 @@ import { map, startWith } from 'rxjs/operators';
 import { routeAnimation } from '../../../core/common/route.animation';
 
 @Component({
-  selector: 'fury-autocomplete',
+  selector: 'lms-autocomplete',
   templateUrl: './autocomplete.component.html',
   styleUrls: ['./autocomplete.component.scss'],
   host: {

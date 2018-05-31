@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'fury-toolbar-search',
+  selector: 'lms-toolbar-search',
   templateUrl: './toolbar-search.component.html',
   styleUrls: ['./toolbar-search.component.scss']
 })

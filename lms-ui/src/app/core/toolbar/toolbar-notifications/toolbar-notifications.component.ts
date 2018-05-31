@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { LIST_FADE_ANIMATION } from '../../common/list.animation';
 
 @Component({
-  selector: 'fury-toolbar-notifications',
+  selector: 'lms-toolbar-notifications',
   templateUrl: './toolbar-notifications.component.html',
   styleUrls: ['./toolbar-notifications.component.scss'],
   animations: [...LIST_FADE_ANIMATION],

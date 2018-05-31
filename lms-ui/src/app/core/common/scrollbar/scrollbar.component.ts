@@ -3,7 +3,7 @@ import Scrollbar from 'smooth-scrollbar';
 import { scrollbarOptions } from './scrollbar-options';
 
 @Component({
-  selector: 'fury-scrollbar',
+  selector: 'lms-scrollbar',
   templateUrl: './scrollbar.component.html',
   styleUrls: ['./scrollbar.component.scss']
 })

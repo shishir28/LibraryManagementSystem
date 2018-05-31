@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'fury-quick-info-widget',
+  selector: 'lms-quick-info-widget',
   templateUrl: './quick-info-widget.component.html',
   styleUrls: ['./quick-info-widget.component.scss']
 })

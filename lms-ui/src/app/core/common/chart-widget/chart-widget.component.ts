@@ -2,28 +2,28 @@ import { ChangeDetectionStrategy, Component, Directive, ViewEncapsulation } from
 
 // noinspection TsLint
 @Component({
-  selector: 'fury-chart-widget',
+  selector: 'lms-chart-widget',
   templateUrl: './chart-widget.component.html',
   styleUrls: ['./chart-widget.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fury-chart-widget' }
+  host: { 'class': 'lms-chart-widget' }
 })
 export class FuryChartWidget {
 }
 
 // noinspection TsLint
 @Component({
-  selector: 'fury-chart-widget-header',
+  selector: 'lms-chart-widget-header',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fury-chart-widget-header' },
+  host: { 'class': 'lms-chart-widget-header' },
   template: `
-    <div class="fury-chart-widget-header-title-group">
-      <ng-content select="fury-chart-widget-header-title"></ng-content>
-      <ng-content select="fury-chart-widget-header-sub-title"></ng-content>
+    <div class="lms-chart-widget-header-title-group">
+      <ng-content select="lms-chart-widget-header-title"></ng-content>
+      <ng-content select="lms-chart-widget-header-sub-title"></ng-content>
     </div>
-    <ng-content select="fury-chart-widget-header-actions"></ng-content>
+    <ng-content select="lms-chart-widget-header-actions"></ng-content>
   `
 })
 export class FuryChartWidgetHeader {
@@ -31,34 +31,34 @@ export class FuryChartWidgetHeader {
 
 // noinspection TsLint
 @Directive({
-  selector: 'fury-chart-widget-header-title',
-  host: { 'class': 'fury-chart-widget-header-title' }
+  selector: 'lms-chart-widget-header-title',
+  host: { 'class': 'lms-chart-widget-header-title' }
 })
 export class FuryChartWidgetHeaderTitle {
 }
 
 // noinspection TsLint
 @Directive({
-  selector: 'fury-chart-widget-header-sub-title',
-  host: { 'class': 'fury-chart-widget-header-sub-title' }
+  selector: 'lms-chart-widget-header-sub-title',
+  host: { 'class': 'lms-chart-widget-header-sub-title' }
 })
 export class FuryChartWidgetHeaderSubTitle {
 }
 
 // noinspection TsLint
 @Directive({
-  selector: 'fury-chart-widget-header-actions',
-  host: { 'class': 'fury-chart-widget-header-actions' }
+  selector: 'lms-chart-widget-header-actions',
+  host: { 'class': 'lms-chart-widget-header-actions' }
 })
 export class FuryChartWidgetHeaderActions {
 }
 
 // noinspection TsLint
 @Component({
-  selector: 'fury-chart-widget-content',
+  selector: 'lms-chart-widget-content',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fury-chart-widget-content' },
+  host: { 'class': 'lms-chart-widget-content' },
   template: `
     <ng-content></ng-content>`
 })

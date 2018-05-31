@@ -6,7 +6,7 @@ import { defaultChartOptions } from '../../common/chart-widget/chart-widget-defa
 import { AdvancedPieChartWidgetOptions } from './advanced-pie-chart-widget-options.interface';
 
 @Component({
-  selector: 'fury-advanced-pie-chart-widget',
+  selector: 'lms-advanced-pie-chart-widget',
   templateUrl: './advanced-pie-chart-widget.component.html',
   styleUrls: ['./advanced-pie-chart-widget.component.scss']
 })

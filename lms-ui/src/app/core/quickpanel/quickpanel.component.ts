@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 
 @Component({
-  selector: 'fury-quickpanel',
+  selector: 'lms-quickpanel',
   templateUrl: './quickpanel.component.html',
   styleUrls: ['./quickpanel.component.scss']
 })

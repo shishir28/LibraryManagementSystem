@@ -10,7 +10,7 @@ import { Publisher } from './shared/publisher.model';
 import { PublisherService } from './shared/services/publisher.service'
 
 @Component({
-  selector: 'fury-publisherList',
+  selector: 'lms-publisherList',
   templateUrl: './publisherList.component.html',
   styleUrls: ['./publisherList.component.scss'],
   animations: [fadeOutAnimation],

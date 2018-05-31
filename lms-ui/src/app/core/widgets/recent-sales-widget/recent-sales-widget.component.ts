@@ -7,7 +7,7 @@ import { ListColumn } from '../../common/list/list-column.model';
 import { RecentSalesWidgetOptions } from './recent-sales-widget-options.interface';
 
 @Component({
-  selector: 'fury-recent-sales-widget',
+  selector: 'lms-recent-sales-widget',
   templateUrl: './recent-sales-widget.component.html',
   styleUrls: ['./recent-sales-widget.component.scss']
 })

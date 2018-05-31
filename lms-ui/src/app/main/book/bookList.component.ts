@@ -10,7 +10,7 @@ import { Book } from './shared/book.model';
 import { BookService } from './shared/services/book.service'
 
 @Component({
-  selector: 'fury-bookList',
+  selector: 'lms-bookList',
   templateUrl: './bookList.component.html',
   styleUrls: ['./bookList.component.scss'],
   animations: [fadeOutAnimation],

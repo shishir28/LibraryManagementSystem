@@ -6,7 +6,7 @@ import { defaultChartOptions } from '../../common/chart-widget/chart-widget-defa
 import { LineChartWidgetOptions } from './line-chart-widget-options.interface';
 
 @Component({
-  selector: 'fury-line-chart-widget',
+  selector: 'lms-line-chart-widget',
   templateUrl: './line-chart-widget.component.html',
   styleUrls: ['./line-chart-widget.component.scss']
 })

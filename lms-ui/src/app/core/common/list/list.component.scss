@@ -1,10 +1,10 @@
 @import "var";
 
-.fury-list-table {
+.lms-list-table {
   display: flex;
   flex-direction: column;
 
-  .fury-list-header {
+  .lms-list-header {
     background: white;
     padding-left: $spacing;
     padding-right: $spacing;
@@ -17,7 +17,7 @@
       padding-bottom: $spacing;
     }
 
-    .fury-list-name {
+    .lms-list-name {
       color: $color;
       border-right: 1px solid $theme-divider;
       font-size: 20px;
@@ -30,11 +30,11 @@
       }
     }
 
-    .fury-filter-input {
+    .lms-filter-input {
       font-size: 16px;
       line-height: 1.125;
 
-      .fury-filter-input-icon {
+      .lms-filter-input-icon {
         width: 1.2em;
         color: $theme-icon;
         vertical-align: bottom;
@@ -43,7 +43,7 @@
       }
     }
 
-    .fury-column-filter {
+    .lms-column-filter {
       color: $theme-icon;
     }
   }
@@ -94,12 +94,12 @@
   /**
     Responsive Table
    */
-  .fury-mobile-label {
+  .lms-mobile-label {
     display: none;
   }
 
   @include media-xs {
-    .fury-mobile-label {
+    .lms-mobile-label {
       width: 80px;
       display: inline-block;
       font-weight: 500;

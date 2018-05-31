@@ -10,7 +10,7 @@ import { Author } from './shared/author.model';
 import { AuthorService } from './shared/services/author.service'
 
 @Component({
-  selector: 'fury-authorList',
+  selector: 'lms-authorList',
   templateUrl: './authorList.component.html',
   styleUrls: ['./authorList.component.scss'],
   animations: [fadeOutAnimation],

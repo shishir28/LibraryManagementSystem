@@ -1,14 +1,14 @@
 <div class="all-in-one-table" furyPage furyPagePadding furyScrollbar>
-  <fury-breadcrumbs current="Publishers"></fury-breadcrumbs>
+  <lms-breadcrumbs current="Publishers"></lms-breadcrumbs>
   <div class="list-table">
-    <fury-list name="Publishers" [columns]="columns" (filterChange)="onFilterChange($event)">
+    <lms-list name="Publishers" [columns]="columns" (filterChange)="onFilterChange($event)">
       <mat-table #table [dataSource]="dataSource" matSort>
 
         <ng-container *ngFor="let column of columns">
           <ng-container [matColumnDef]="column.property">
             <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.name }}</mat-header-cell>
             <mat-cell *matCellDef="let row">
-              <span class="fury-mobile-label">{{ column.name }}</span>
+              <span class="lms-mobile-label">{{ column.name }}</span>
               {{ row[column.property] }}
             </mat-cell>
           </ng-container>
@@ -17,6 +17,6 @@
         <mat-row *matRowDef="let row; columns: visibleColumns;" (click)="updateCustomer(row)" class="clickable"></mat-row>
       </mat-table>
       <mat-paginator class="paginator" [pageSize]="pageSize"></mat-paginator>
-    </fury-list>
+    </lms-list>
   </div>
 </div>

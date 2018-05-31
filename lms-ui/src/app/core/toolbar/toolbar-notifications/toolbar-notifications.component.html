@@ -6,24 +6,24 @@
   </button>
 
   <div class="dropdown" [class.open]="isOpen">
-    <fury-card>
-      <fury-card-header class="header">
-        <fury-card-header-title>
+    <lms-card>
+      <lms-card-header class="header">
+        <lms-card-header-title>
           Notifications
-        </fury-card-header-title>
-        <fury-card-header-sub-title>
+        </lms-card-header-title>
+        <lms-card-header-sub-title>
           You have {{ notifications.length }} new notifications.
-        </fury-card-header-sub-title>
+        </lms-card-header-sub-title>
 
-        <fury-card-header-actions>
+        <lms-card-header-actions>
           <button type="button" mat-icon-button>
             <mat-icon class="icon">settings</mat-icon>
           </button>
-        </fury-card-header-actions>
-      </fury-card-header>
+        </lms-card-header-actions>
+      </lms-card-header>
 
-      <fury-card-content class="card-content">
-        <fury-scrollbar class="content">
+      <lms-card-content class="card-content">
+        <lms-scrollbar class="content">
           <div fxLayout="column">
             <ng-container *ngFor="let notification of notifications; let last = last">
               <div class="notification"
@@ -47,13 +47,13 @@
           <div class="empty" *ngIf="notifications.length === 0" [@listFade]>
             All fine! No notifications right now.
           </div>
-        </fury-scrollbar>
-      </fury-card-content>
+        </lms-scrollbar>
+      </lms-card-content>
 
 
-      <fury-card-actions class="footer" fxLayout="row" fxLayoutAlign="center center">
+      <lms-card-actions class="footer" fxLayout="row" fxLayoutAlign="center center">
         <div class="action" (click)="markAllAsRead()">Mark all as read</div>
-      </fury-card-actions>
-    </fury-card>
+      </lms-card-actions>
+    </lms-card>
   </div>
 </div>

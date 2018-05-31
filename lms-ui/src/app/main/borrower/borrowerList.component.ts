@@ -10,7 +10,7 @@ import { Borrower } from './shared/borrower.model';
 import { BorrowerService } from './shared/services/borrower.service'
 
 @Component({
-  selector: 'fury-borrowerList',
+  selector: 'lms-borrowerList',
   templateUrl: './borrowerList.component.html',
   styleUrls: ['./borrowerList.component.scss'],
   animations: [fadeOutAnimation],

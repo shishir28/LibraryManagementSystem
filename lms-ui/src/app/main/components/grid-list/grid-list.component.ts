@@ -3,7 +3,7 @@ import escape from 'lodash-es/escape';
 import { routeAnimation } from '../../../core/common/route.animation';
 
 @Component({
-  selector: 'fury-grid-list',
+  selector: 'lms-grid-list',
   templateUrl: './grid-list.component.html',
   styleUrls: ['./grid-list.component.scss'],
   host: {

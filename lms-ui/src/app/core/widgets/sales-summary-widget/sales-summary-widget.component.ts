@@ -6,7 +6,7 @@ import { defaultChartOptions } from '../../common/chart-widget/chart-widget-defa
 import { SalesSummaryWidgetOptions } from './sales-summary-widget-options.interface';
 
 @Component({
-  selector: 'fury-sales-summary-widget',
+  selector: 'lms-sales-summary-widget',
   templateUrl: './sales-summary-widget.component.html',
   styleUrls: ['./sales-summary-widget.component.scss']
 })

@@ -4,7 +4,7 @@ import { SidenavItem } from '../../sidenav/sidenav-item/sidenav-item.interface';
 import { SidenavService } from '../../sidenav/sidenav.service';
 
 @Component({
-  selector: 'fury-toolbar-search-bar',
+  selector: 'lms-toolbar-search-bar',
   templateUrl: './toolbar-search-bar.component.html',
   styleUrls: ['./toolbar-search-bar.component.scss']
 })

@@ -8,7 +8,7 @@ import { fadeOutAnimation } from '../../../core/common/route.animation';
 import { CalendarEditComponent } from './calendar-edit/calendar-edit.component';
 
 @Component({
-  selector: 'fury-calendar',
+  selector: 'lms-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
   host: { '[@fadeOutAnimation]': 'true' },

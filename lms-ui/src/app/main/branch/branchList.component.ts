@@ -10,7 +10,7 @@ import { Branch } from './shared/branch.model';
 import { BranchService } from './shared/services/branch.service'
 
 @Component({
-  selector: 'fury-branchList',
+  selector: 'lms-branchList',
   templateUrl: './branchList.component.html',
   styleUrls: ['./branchList.component.scss'],
   animations: [fadeOutAnimation],

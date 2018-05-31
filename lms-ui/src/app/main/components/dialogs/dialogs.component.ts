@@ -4,7 +4,7 @@ import escape from 'lodash-es/escape';
 import { routeAnimation } from '../../../core/common/route.animation';
 
 @Component({
-  selector: 'fury-dialogs',
+  selector: 'lms-dialogs',
   templateUrl: './dialogs.component.html',
   styleUrls: ['./dialogs.component.scss'],
   host: {
@@ -34,7 +34,7 @@ export class DialogsComponent {
 }
 
 @Component({
-  selector: 'fury-demo-dialog',
+  selector: 'lms-demo-dialog',
   template: `
     <div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between center">
       <div>Question</div>

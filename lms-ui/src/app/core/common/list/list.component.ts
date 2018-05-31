@@ -4,7 +4,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { ListColumn } from './list-column.model';
 
 @Component({
-  selector: 'fury-list',
+  selector: 'lms-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss'],
   encapsulation: ViewEncapsulation.None

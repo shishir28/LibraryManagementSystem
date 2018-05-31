@@ -3,7 +3,7 @@ import { SidenavItem } from './core/sidenav/sidenav-item/sidenav-item.interface'
 import { SidenavService } from './core/sidenav/sidenav.service';
 
 @Component({
-  selector: 'fury-root',
+  selector: 'lms-root',
   templateUrl: './app.component.html'
 })
 export class AppComponent {

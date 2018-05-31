@@ -3,7 +3,7 @@ import escape from 'lodash-es/escape';
 import { routeAnimation } from '../../../core/common/route.animation';
 
 @Component({
-  selector: 'fury-slider',
+  selector: 'lms-slider',
   templateUrl: './slider.component.html',
   styleUrls: ['./slider.component.scss'],
   host: {

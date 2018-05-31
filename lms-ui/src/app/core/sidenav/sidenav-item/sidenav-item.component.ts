@@ -7,7 +7,7 @@ import { SidenavService } from '../sidenav.service';
 import { SidenavItem } from './sidenav-item.interface';
 
 @Component({
-  selector: 'fury-sidenav-item',
+  selector: 'lms-sidenav-item',
   templateUrl: './sidenav-item.component.html',
   styleUrls: ['./sidenav-item.component.scss'],
   animations: [

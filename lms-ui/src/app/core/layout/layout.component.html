@@ -1,25 +1,25 @@
-<fury-loading-indicator></fury-loading-indicator>
+<lms-loading-indicator></lms-loading-indicator>
 
 <mat-drawer-container class="layout-container">
 
   <!-- QUICKPANEL -->
   <mat-drawer position="end" mode="over" #quickpanel>
-    <fury-quickpanel></fury-quickpanel>
+    <lms-quickpanel></lms-quickpanel>
   </mat-drawer>
   <!-- END QUICKPANEL -->
 
   <mat-drawer-content class="drawer-content">
-    <fury-backdrop></fury-backdrop>
+    <lms-backdrop></lms-backdrop>
 
     <div class="wrapper" fxFlex="grow" fxLayout="row">
 
       <!-- SIDENAV -->
-      <fury-sidenav class="sidenav"></fury-sidenav>
+      <lms-sidenav class="sidenav"></lms-sidenav>
       <!-- END SIDENAV -->
 
       <div class="content-wrapper" fxFlex="grow" fxLayout="column">
         <!-- TOOLBAR -->
-        <fury-toolbar [quickpanel]="quickpanel"></fury-toolbar>
+        <lms-toolbar [quickpanel]="quickpanel"></lms-toolbar>
         <!-- END TOOLBAR -->
 
         <!-- CONTENT -->
@@ -29,7 +29,7 @@
         <!-- END CONTENT -->
 
         <!-- FOOTER -->
-        <fury-footer></fury-footer>
+        <lms-footer></lms-footer>
         <!-- END FOOTER -->
       </div>
 

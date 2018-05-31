@@ -18,5 +18,5 @@
 </a>
 
 <div class="dropdown" fxLayout="column" [@dropdownState]="dropdownState$ | async">
-    <fury-sidenav-item *ngFor="let subItem of item.subItems" [item]="subItem" [level]="level+1"></fury-sidenav-item>
+    <lms-sidenav-item *ngFor="let subItem of item.subItems" [item]="subItem" [level]="level+1"></lms-sidenav-item>
 </div>

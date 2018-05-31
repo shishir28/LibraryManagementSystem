@@ -1,6 +1,6 @@
 @import "var";
 
-.fury-card {
+.lms-card {
   background: white;
   border-radius: 2px;
   display: flex;
@@ -12,7 +12,7 @@
   @include mat-elevation($card-elevation);
 }
 
-.fury-card-header {
+.lms-card-header {
   padding: $spacing;
   display: flex;
   justify-content: flex-start;
@@ -23,13 +23,13 @@
   //border-bottom: 1px solid $theme-divider;
   //background: $theme-app-bar;
 
-  .fury-card-header-title-group {
+  .lms-card-header-title-group {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     margin-right: $spacing;
 
-    .fury-card-header-title {
+    .lms-card-header-title {
       white-space: nowrap;
       @include mat-typography-level-to-styles($config, subheading-1);
 
@@ -40,7 +40,7 @@
       align-content: center;
     }
 
-    .fury-card-header-sub-title {
+    .lms-card-header-sub-title {
       white-space: nowrap;
       font-size: 13px;
       color: $theme-secondary-text;
@@ -48,7 +48,7 @@
     }
   }
 
-  .fury-card-header-actions {
+  .lms-card-header-actions {
     flex: 1;
     display: flex;
     justify-content: flex-end;
@@ -56,7 +56,7 @@
   }
 }
 
-.fury-card-content {
+.lms-card-content {
   padding: 0 $spacing $spacing;
   flex: 1;
   display: flex;
@@ -64,7 +64,7 @@
   overflow: hidden;
 }
 
-.fury-card-actions {
+.lms-card-actions {
   padding: $spacing/3 $spacing/1.5;
   border-top: 1px solid $theme-divider;
   display: flex;
@@ -74,7 +74,7 @@
     margin-left: $spacing/3;
   }
 
-  &.fury-card-actions-align-end {
+  &.lms-card-actions-align-end {
     justify-content: flex-end;
   }
 }

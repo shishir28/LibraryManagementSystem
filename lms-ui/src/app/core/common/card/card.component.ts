@@ -2,10 +2,10 @@ import { ChangeDetectionStrategy, Component, Directive, Input, ViewEncapsulation
 
 // noinspection TsLint
 @Component({
-  selector: 'fury-card',
+  selector: 'lms-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
-  host: { 'class': 'fury-card' },
+  host: { 'class': 'lms-card' },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -14,17 +14,17 @@ export class FuryCard {
 
 // noinspection TsLint
 @Component({
-  selector: 'fury-card-header',
+  selector: 'lms-card-header',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fury-card-header' },
+  host: { 'class': 'lms-card-header' },
   template: `
-    <div class="fury-card-header-title-group">
-      <ng-content select="fury-card-header-title"></ng-content>
-      <ng-content select="fury-card-header-sub-title"></ng-content>
+    <div class="lms-card-header-title-group">
+      <ng-content select="lms-card-header-title"></ng-content>
+      <ng-content select="lms-card-header-sub-title"></ng-content>
     </div>
     <ng-content></ng-content>
-    <ng-content select="fury-card-header-actions"></ng-content>
+    <ng-content select="lms-card-header-actions"></ng-content>
   `
 })
 export class FuryCardHeader {
@@ -32,10 +32,10 @@ export class FuryCardHeader {
 
 // noinspection TsLint
 @Component({
-  selector: 'fury-card-content',
+  selector: 'lms-card-content',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  host: { 'class': 'fury-card-content' },
+  host: { 'class': 'lms-card-content' },
   template: `
     <ng-content></ng-content>`
 })
@@ -44,34 +44,34 @@ export class FuryCardContent {
 
 // noinspection TsLint
 @Directive({
-  selector: 'fury-card-header-title',
-  host: { 'class': 'fury-card-header-title' }
+  selector: 'lms-card-header-title',
+  host: { 'class': 'lms-card-header-title' }
 })
 export class FuryCardHeaderTitle {
 }
 
 // noinspection TsLint
 @Directive({
-  selector: 'fury-card-header-sub-title',
-  host: { 'class': 'fury-card-header-sub-title' }
+  selector: 'lms-card-header-sub-title',
+  host: { 'class': 'lms-card-header-sub-title' }
 })
 export class FuryCardHeaderSubTitle {
 }
 
 // noinspection TsLint
 @Directive({
-  selector: 'fury-card-header-actions',
-  host: { 'class': 'fury-card-header-actions' }
+  selector: 'lms-card-header-actions',
+  host: { 'class': 'lms-card-header-actions' }
 })
 export class FuryCardHeaderActions {
 }
 
 // noinspection TsLint
 @Directive({
-  selector: 'fury-card-actions',
+  selector: 'lms-card-actions',
   host: {
-    'class': 'fury-card-actions',
-    '[class.fury-card-actions-align-end]': 'align === "end"',
+    'class': 'lms-card-actions',
+    '[class.lms-card-actions-align-end]': 'align === "end"',
   }
 })
 export class FuryCardActions {

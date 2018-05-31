@@ -3,7 +3,7 @@ import escape from 'lodash-es/escape';
 import { routeAnimation } from '../../../core/common/route.animation';
 
 @Component({
-  selector: 'fury-buttons',
+  selector: 'lms-buttons',
   templateUrl: './buttons.component.html',
   styleUrls: ['./buttons.component.scss'],
   host: {

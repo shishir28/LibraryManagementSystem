@@ -16,7 +16,7 @@ div {
   box-sizing: border-box;
 }
 
-.fury-page {
+.lms-page {
   max-width: 100%;
   background: $theme-background;
   flex: 1;
@@ -25,7 +25,7 @@ div {
   height: 100%;
 }
 
-.fury-page-padding {
+.lms-page-padding {
   padding: $spacing/1.5;
 
   @include media-xs {
@@ -41,7 +41,7 @@ div {
   }
 }
 
-[furyScrollbar] > .scroll-content, fury-scrollbar > .scroll-content {
+[furyScrollbar] > .scroll-content, lms-scrollbar > .scroll-content {
   display: inherit;
   flex-direction: inherit;
   flex: inherit;
@@ -50,14 +50,14 @@ div {
   align-items: inherit;
 }
 
-.fury-aspect-ratio-host-element {
+.lms-aspect-ratio-host-element {
   position: relative;
   width: 100%;
   // overflow: hidden;
   display: block;
 }
 
-.fury-aspect-ratio-pseudo-element {
+.lms-aspect-ratio-pseudo-element {
   visibility: hidden !important;
   height: 0 !important;
   width: 0 !important;
@@ -69,7 +69,7 @@ div {
   display: block;
 }
 
-.fury-aspect-ratio-content-element {
+.lms-aspect-ratio-content-element {
   position: absolute;
   top: 0;
   left: 0;
@@ -78,11 +78,11 @@ div {
   display: flex;
 }
 
-.mat-menu-panel.fury-inbox-mail-label-list-menu {
+.mat-menu-panel.lms-inbox-mail-label-list-menu {
   max-height: 350px;
   padding-top: $spacing/3;
 
-  .fury-inbox-mail-label-list-menu-subheading {
+  .lms-inbox-mail-label-list-menu-subheading {
     @include mat-typography-level-to-styles($config, caption);
     color: $theme-secondary-text;
     font-weight: 500;
@@ -95,12 +95,12 @@ div {
     margin-right: $spacing/2;
   }
 
-  .fury-inbox-mail-label-list-create {
+  .lms-inbox-mail-label-list-create {
     padding-left: $spacing/2;
     padding-right: $spacing/2;
   }
 
-  .fury-inbox-mail-label-list-color, .fury-inbox-mail-label-list-name {
+  .lms-inbox-mail-label-list-color, .lms-inbox-mail-label-list-name {
 
     .mat-form-field-infix {
       width: auto;
@@ -108,8 +108,8 @@ div {
   }
 }
 
-.fury-inbox-mail-label-list-color-select {
-  .fury-inbox-mail-label-list-color-select-indicator {
+.lms-inbox-mail-label-list-color-select {
+  .lms-inbox-mail-label-list-color-select-indicator {
     width: 16px;
     height: 16px;
     border-radius: 50%;

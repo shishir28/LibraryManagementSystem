@@ -6,7 +6,7 @@ import { defaultChartOptions } from '../../common/chart-widget/chart-widget-defa
 import { BarChartWidgetOptions } from './bar-chart-widget-options.interface';
 
 @Component({
-  selector: 'fury-bar-chart-widget',
+  selector: 'lms-bar-chart-widget',
   templateUrl: './bar-chart-widget.component.html',
   styleUrls: ['./bar-chart-widget.component.scss']
 })

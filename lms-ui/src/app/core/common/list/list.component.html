@@ -1,17 +1,17 @@
-<div class="fury-list-table">
-  <div class="fury-list-header" *ngIf="!hideHeader"
+<div class="lms-list-table">
+  <div class="lms-list-header" *ngIf="!hideHeader"
        fxLayout="row" fxLayoutAlign="start baseline" fxLayoutGap="8px"
        fxLayoutGap.gt-xs="24px">
     <div fxLayout="column" fxLayoutAlign="start baseline" fxLayoutGap="24px" fxFlex="grow"
          fxLayout.gt-xs="row">
-      <div class="fury-list-name">{{ name }}</div>
-      <mat-form-field class="fury-filter-input" floatPlaceholder="never" fxFlex>
-        <mat-icon class="fury-filter-input-icon" matPrefix>search</mat-icon>
+      <div class="lms-list-name">{{ name }}</div>
+      <mat-form-field class="lms-filter-input" floatPlaceholder="never" fxFlex>
+        <mat-icon class="lms-filter-input-icon" matPrefix>search</mat-icon>
         <input matInput #filter placeholder="Search&hellip;">
       </mat-form-field>
     </div>
 
-    <button class="fury-column-filter" type="button" mat-icon-button [matMenuTriggerFor]="columnFilter">
+    <button class="lms-column-filter" type="button" mat-icon-button [matMenuTriggerFor]="columnFilter">
       <mat-icon>filter_list</mat-icon>
     </button>
     <ng-content select=".actions"></ng-content>

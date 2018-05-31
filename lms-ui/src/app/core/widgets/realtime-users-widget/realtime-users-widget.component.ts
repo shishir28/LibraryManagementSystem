@@ -7,7 +7,7 @@ import { defaultChartOptions } from '../../common/chart-widget/chart-widget-defa
 import { RealtimeUsersWidgetData, RealtimeUsersWidgetPages } from './realtime-users-widget.interface';
 
 @Component({
-  selector: 'fury-realtime-users-widget',
+  selector: 'lms-realtime-users-widget',
   templateUrl: './realtime-users-widget.component.html',
   styleUrls: ['./realtime-users-widget.component.scss']
 })

@@ -8,7 +8,7 @@ import { defaultChartOptions } from '../../common/chart-widget/chart-widget-defa
 import { AudienceOverviewWidgetOptions } from './audience-overview-widget-options.interface';
 
 @Component({
-  selector: 'fury-audience-overview-widget',
+  selector: 'lms-audience-overview-widget',
   templateUrl: './audience-overview-widget.component.html',
   styleUrls: ['./audience-overview-widget.component.scss']
 })

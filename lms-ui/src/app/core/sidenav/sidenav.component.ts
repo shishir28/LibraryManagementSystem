@@ -9,7 +9,7 @@ import { SidenavState } from './sidenav-state.enum';
 import { SidenavService } from './sidenav.service';
 
 @Component({
-  selector: 'fury-sidenav',
+  selector: 'lms-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss'],
   animations: [

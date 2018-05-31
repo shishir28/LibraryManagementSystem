@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'fury-toolbar-user-button',
+  selector: 'lms-toolbar-user-button',
   templateUrl: './toolbar-user-button.component.html',
   styleUrls: ['./toolbar-user-button.component.scss']
 })

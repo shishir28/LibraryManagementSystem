@@ -7,7 +7,7 @@ import { defaultChartOptions } from '../../common/chart-widget/chart-widget-defa
 import { LineChartWidgetOptions } from '../line-chart-widget/line-chart-widget-options.interface';
 
 @Component({
-  selector: 'fury-donut-chart-widget',
+  selector: 'lms-donut-chart-widget',
   templateUrl: './donut-chart-widget.component.html',
   styleUrls: ['./donut-chart-widget.component.scss']
 })

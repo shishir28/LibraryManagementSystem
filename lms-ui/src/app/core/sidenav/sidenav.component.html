@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <fury-scrollbar class="sidenav-items" fxFlex="grow" fxLayout="column">
-        <fury-sidenav-item *ngFor="let item of items$ | async" [item]="item" [level]="1"></fury-sidenav-item>
-    </fury-scrollbar>
+    <lms-scrollbar class="sidenav-items" fxFlex="grow" fxLayout="column">
+        <lms-sidenav-item *ngFor="let item of items$ | async" [item]="item" [level]="1"></lms-sidenav-item>
+    </lms-scrollbar>
 </div>

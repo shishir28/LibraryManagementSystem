@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import escape from 'lodash-es/escape';
 
 @Component({
-  selector: 'fury-progress',
+  selector: 'lms-progress',
   templateUrl: './progress.component.html',
   styleUrls: ['./progress.component.scss']
 })

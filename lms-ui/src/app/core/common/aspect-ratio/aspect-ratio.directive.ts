@@ -35,7 +35,7 @@ export class AspectRatioDirective extends BaseFxDirective implements OnInit, Aft
     super(monitor, hostElement, styleUtils);
 
     this.pseudoElement = this.renderer.createElement('div');
-    this.renderer.addClass(this.pseudoElement, 'fury-aspect-ratio-pseudo-element');
+    this.renderer.addClass(this.pseudoElement, 'lms-aspect-ratio-pseudo-element');
 
     this._cacheInput('aspectRatio', '');
   }
@@ -119,7 +119,7 @@ export class AspectRatioDirective extends BaseFxDirective implements OnInit, Aft
 
   ngAfterContentInit() {
     if (this.hostElement && this.pseudoElement && this.contentElement) {
-      this.renderer.addClass(this.hostElement.nativeElement, 'fury-aspect-ratio-host-element');
+      this.renderer.addClass(this.hostElement.nativeElement, 'lms-aspect-ratio-host-element');
 
       this.renderer.insertBefore(this.hostElement.nativeElement, this.pseudoElement, this.contentElement.nativeElement);
 

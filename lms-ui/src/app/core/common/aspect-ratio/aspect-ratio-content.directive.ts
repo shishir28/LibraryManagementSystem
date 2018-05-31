@@ -2,7 +2,7 @@ import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[furyAspectRatioContent]',
-  host: { '[class.fury-aspect-ratio-content-element]': 'true' }
+  host: { '[class.lms-aspect-ratio-content-element]': 'true' }
 })
 export class AspectRatioContentDirective {
 

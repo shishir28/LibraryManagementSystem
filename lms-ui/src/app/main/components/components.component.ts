@@ -19,7 +19,7 @@ import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { TooltipComponent } from './tooltip/tooltip.component';
 
 @Component({
-  selector: 'fury-components',
+  selector: 'lms-components',
   templateUrl: './components.component.html',
   styleUrls: ['./components.component.scss'],
   animations: [fadeOutAnimation],

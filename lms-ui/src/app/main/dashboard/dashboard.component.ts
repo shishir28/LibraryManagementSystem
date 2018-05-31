@@ -19,7 +19,7 @@ import { SalesSummaryWidgetOptions } from '../../core/widgets/sales-summary-widg
 import { DashboardService } from './dashboard.service';
 
 @Component({
-  selector: 'fury-dashboard',
+  selector: 'lms-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   animations: [fadeOutAnimation],

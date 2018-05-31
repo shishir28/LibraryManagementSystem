@@ -1,4 +1,4 @@
-<fury-card>
+<lms-card>
   <div class="header" fxLayout="column" fxLayout.gt-xs="row">
     <div class="property" *ngFor="let property of options" [class.active]="isActive(property)"
          fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px"
@@ -15,13 +15,13 @@
     </div>
   </div>
 
-  <fury-card-content>
+  <lms-card-content>
     <div class="content">
       <canvas #canvas></canvas>
     </div>
-  </fury-card-content>
+  </lms-card-content>
 
-  <fury-card-actions class="actions" fxLayout="row" fxLayoutAlign="space-between center">
+  <lms-card-actions class="actions" fxLayout="row" fxLayoutAlign="space-between center">
     <mat-select class="select" [formControl]="timeframe">
       <mat-option value="last7">Last 7 Days</mat-option>
       <mat-option value="last14">Last 14 Days</mat-option>
@@ -33,5 +33,5 @@
     <button type="button" mat-button color="primary">
       AUDIENCE OVERVIEW
     </button>
-  </fury-card-actions>
-</fury-card>
+  </lms-card-actions>
+</lms-card>

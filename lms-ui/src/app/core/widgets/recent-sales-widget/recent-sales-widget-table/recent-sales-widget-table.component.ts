@@ -6,7 +6,7 @@ import { filter } from 'rxjs/operators';
 import { ListColumn } from '../../../common/list/list-column.model';
 
 @Component({
-  selector: 'fury-recent-sales-widget-table',
+  selector: 'lms-recent-sales-widget-table',
   templateUrl: './recent-sales-widget-table.component.html',
   styleUrls: ['./recent-sales-widget-table.component.scss']
 })
