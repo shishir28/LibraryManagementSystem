@@ -18,64 +18,55 @@ export class AuthorController {
     this.authorService = new AuthorService();
   }
 
-  createAuthor(request: express.Request, response: express.Response): expressServeStaticCore.Response {
+  createAuthor(request: express.Request, response: express.Response) {
     let authorData = new author();
     authorData.BookId = request.body.BookId;
     authorData.AuthorName = request.body.AuthorName;
-    var result = this.authorService.createAuthor(authorData);
 
-    result.then(data => {
-      if (data.id > 0) {
-        return response.status(201).send(data);
-      } else {
-        return response.status(412);
-      }
+    this.authorService.createAuthor(authorData).then((authorInstance: author) => {
+      return response.status(201).send(authorInstance);
+    }).catch((error: Error) => {
+      return response.status(409).send(error);
     });
   }
 
-  updateAuthor(request: express.Request, response: express.Response): expressServeStaticCore.Response {
+  updateAuthor(request: express.Request, response: express.Response) {
     let authorData = new author();
     authorData.id = request.body.id;
     authorData.BookId = request.body.BookId;
     authorData.AuthorName = request.body.AuthorName;
     var result = this.authorService.updateAuthor(authorData);
 
-    result.then(data => {
-      if (data) {
-        return response.status(204).send(data);
-      } else {       
-        return response.status(412).send();        
-      }
+    this.authorService.updateAuthor(authorData).then((data: Boolean) => {
+      return response.status(204).send(data);
+    }).catch((error: Error) => {
+      return response.status(409).send(error);
     });
   }
 
-  getAuthor(request: express.Request, response: express.Response): expressServeStaticCore.Response {
+  getAuthor(request: express.Request, response: express.Response){
     const authorId = request.params["id"];
-    var result = this.authorService.getAuthor(authorId);
-
-    result.then(data => {
-      if (data) {
-        return response.status(200).send(data);
-      } else {
-        return response.status(412).send();
-      }
+    this.authorService.getAuthor(authorId).then((authorInstance: author) => {
+      return response.status(200).send(authorInstance);
+    }).catch((error: Error) => {
+      return response.status(500).send(error);
     });
   }
 
-  getAllAuthors(request: express.Request, response: express.Response): expressServeStaticCore.Response {
-    var result = this.authorService.getAllAuthors();
-    console.log('getAllAuthors');
-    result.then(data => {
-      if (data) {
-        return response.status(200).send(data);
-      } else {
-        return response.status(412);
-      }
+  getAllAuthors(request: express.Request, response: express.Response){
+    this.authorService.getAllAuthors().then((authors: author[]) => {
+      return response.status(200).send(authors);
+    }).catch((error: Error) => {
+      return response.status(500).send(error);
     });
   }
 
   deleteAuthor(request: express.Request, response: express.Response) {
-    let result = response.status(500).send({ 'message': 'Dummy deleteAuthor Test' });
-    return result;
+    const authorId = request.params["id"];
+    this.authorService.deleteAuthor(authorId).then((data: Boolean) => {
+      return response.status(204).send();
+    }).catch((error: Error) => {
+      return response.status(500).send(error);
+    });
   }
 }

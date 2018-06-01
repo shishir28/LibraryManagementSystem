@@ -18,66 +18,57 @@ export class BorrowerController {
     this.borrowerService = new BorrowerService();
   }
 
-  createBorrower(request: express.Request, response: express.Response): expressServeStaticCore.Response {
+  createBorrower(request: express.Request, response: express.Response) {
     let borrowerData = new borrower();
     borrowerData.Name = request.body.Name;
     borrowerData.Address = request.body.Address;
     borrowerData.Phone = request.body.Phone;
-    
-    var result = this.borrowerService.createBorrower(borrowerData);
 
-    result.then(data => {
-      if (data.id > 0) {
-        return response.status(201).send(data);
-      } else {
-        return response.status(412);
-      }
+    this.borrowerService.createBorrower(borrowerData).then((borrowerInstance: borrower) => {
+      return response.status(201).send(borrowerInstance);
+    }).catch((error: Error) => {
+      return response.status(409).send(error);
     });
   }
 
-  updateBorrower(request: express.Request, response: express.Response): expressServeStaticCore.Response {
+
+  updateBorrower(request: express.Request, response: express.Response) {
     let borrowerData = new borrower();
     borrowerData.Name = request.body.Name;
     borrowerData.Address = request.body.Address;
     borrowerData.Phone = request.body.Phone;
     var result = this.borrowerService.updateBorrower(borrowerData);
 
-    result.then(data => {
-      if (data) {
-        return response.status(204).send(data);
-      } else {       
-        return response.status(412).send();        
-      }
+    this.borrowerService.updateBorrower(borrowerData).then((data: Boolean) => {
+      return response.status(204).send(data);
+    }).catch((error: Error) => {
+      return response.status(409).send(error);
     });
   }
 
-  getBorrower(request: express.Request, response: express.Response): expressServeStaticCore.Response {
+  getBorrower(request: express.Request, response: express.Response){
     const borrowerId = request.params["id"];
-    var result = this.borrowerService.getBorrower(borrowerId);
-
-    result.then(data => {
-      if (data) {
-        return response.status(200).send(data);
-      } else {
-        return response.status(412).send();
-      }
+    this.borrowerService.getBorrower(borrowerId).then((borrowerInstance: borrower) => {
+      return response.status(200).send(borrowerInstance);
+    }).catch((error: Error) => {
+      return response.status(500).send(error);
     });
   }
 
-  getAllBorrowers(request: express.Request, response: express.Response): expressServeStaticCore.Response {
-    var result = this.borrowerService.getAllBorrowers();
-
-    result.then(data => {
-      if (data) {
-        return response.status(200).send(data);
-      } else {
-        return response.status(412);
-      }
+  getAllBorrowers(request: express.Request, response: express.Response){
+    this.borrowerService.getAllBorrowers().then((borrowers: borrower[]) => {
+      return response.status(200).send(borrowers);
+    }).catch((error: Error) => {
+      return response.status(500).send(error);
     });
   }
 
   deleteBorrower(request: express.Request, response: express.Response) {
-    let result = response.status(500).send({ 'message': 'Dummy deleteBorrower Test' });
-    return result;
+    const borrowerId = request.params["id"];
+    this.borrowerService.deleteBorrower(borrowerId).then((data: Boolean) => {
+      return response.status(204).send();
+    }).catch((error: Error) => {
+      return response.status(500).send(error);
+    });
   }
 }

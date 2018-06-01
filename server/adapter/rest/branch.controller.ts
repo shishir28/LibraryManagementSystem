@@ -10,7 +10,7 @@ export class BranchController {
     api.post('/api/branch', (request: express.Request, response: express.Response) => this.createBranch(request, response));
     api.put('/api/branch/:id', (request: express.Request, response: express.Response) => this.updateBranch(request, response));
     api.get('/api/branch/:id', (request: express.Request, response: express.Response) => this.getBranch(request, response));
-    api.get('/api/branch', (request: express.Request, response: express.Response) => this.getAllBranchs(request, response));
+    api.get('/api/branch', (request: express.Request, response: express.Response) => this.getAllBranches(request, response));
     api.delete('/api/branch/:id', (request: express.Request, response: express.Response) => this.deleteBranch(request, response));
   }
 
@@ -18,65 +18,55 @@ export class BranchController {
     this.branchService = new BranchService();
   }
 
-  createBranch(request: express.Request, response: express.Response): expressServeStaticCore.Response {
+  createBranch(request: express.Request, response: express.Response) {
     let branchData = new branch();
     branchData.BranchName = request.body.BranchName;
     branchData.Address = request.body.Address;
-    var result = this.branchService.createBranch(branchData);
 
-    result.then(data => {
-      if (data.id > 0) {
-        return response.status(201).send(data);
-      } else {
-        return response.status(412);
-      }
+    this.branchService.createBranch(branchData).then((branchInstance: branch) => {
+      return response.status(201).send(branchInstance);
+    }).catch((error: Error) => {
+      return response.status(409).send(error);
     });
   }
 
-
-  updateBranch(request: express.Request, response: express.Response): expressServeStaticCore.Response {
+  updateBranch(request: express.Request, response: express.Response) {
     let branchData = new branch();
     branchData.id = request.body.id;
     branchData.BranchName = request.body.BranchName;
     branchData.Address = request.body.Address;
     var result = this.branchService.updateBranch(branchData);
 
-    result.then(data => {
-      if (data) {
-        return response.status(204).send(data);
-      } else {       
-        return response.status(412).send();        
-      }
+    this.branchService.updateBranch(branchData).then((data: Boolean) => {
+      return response.status(204).send(data);
+    }).catch((error: Error) => {
+      return response.status(409).send(error);
     });
   }
 
-  getBranch(request: express.Request, response: express.Response): expressServeStaticCore.Response {
+  getBranch(request: express.Request, response: express.Response){
     const branchId = request.params["id"];
-    var result = this.branchService.getBranch(branchId);
-
-    result.then(data => {
-      if (data) {
-        return response.status(200).send(data);
-      } else {
-        return response.status(412).send();
-      }
+    this.branchService.getBranch(branchId).then((branchInstance: branch) => {
+      return response.status(200).send(branchInstance);
+    }).catch((error: Error) => {
+      return response.status(500).send(error);
     });
   }
 
-  getAllBranchs(request: express.Request, response: express.Response): expressServeStaticCore.Response {
-    var result = this.branchService.getAllBranches();
-
-    result.then(data => {
-      if (data) {
-        return response.status(200).send(data);
-      } else {
-        return response.status(412);
-      }
+  getAllBranches(request: express.Request, response: express.Response){
+    this.branchService.getAllBranches().then((branchs: branch[]) => {
+      return response.status(200).send(branchs);
+    }).catch((error: Error) => {
+      return response.status(500).send(error);
     });
   }
 
   deleteBranch(request: express.Request, response: express.Response) {
-    let result = response.status(500).send({ 'message': 'Dummy deleteBranch Test' });
-    return result;
+    const branchId = request.params["id"];
+    this.branchService.deleteBranch(branchId).then((data: Boolean) => {
+      return response.status(204).send();
+    }).catch((error: Error) => {
+      return response.status(500).send(error);
+    });
   }
 }

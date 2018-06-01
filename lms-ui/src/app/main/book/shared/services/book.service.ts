@@ -5,8 +5,6 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { httpResultObject } from '../../../../shared/httpResultObject';
-
-
 import { Book } from '../book.model';
 
 @Injectable()
@@ -28,6 +26,7 @@ export class BookService {
                 return result;
             });
     }
+
     editBook(book:Book): Observable<httpResultObject<any>> {        
         return this.http.put(this.location.prepareExternalUrl("api/book/"+book.id), JSON.stringify(book))
             .map(res => {
@@ -37,6 +36,17 @@ export class BookService {
                 return result;
             });
     }
+
+    deleteBook(book:Book): Observable<httpResultObject<any>> {            
+        return this.http.delete(this.location.prepareExternalUrl("api/book/"+book.id))
+            .map(res => {
+                let result = new httpResultObject<any>();                
+                result.statusCode = res.status;
+                result.responseBody = res.json() ;
+                return result;
+            });
+    }
+
 
     private extractData(res: Response) {
         let body = res.json();

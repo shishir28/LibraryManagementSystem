@@ -53,6 +53,10 @@ class API {
         }));
 
         this.api.use(bodyParser.json());
+
+        this.api.use(function (err, req, res, next) {
+            console.error(err.stack)
+        });
     }
 }
 

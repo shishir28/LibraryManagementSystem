@@ -18,65 +18,56 @@ export class BookController {
     this.bookService = new BookService();
   }
 
-  createBook(request: express.Request, response: express.Response): expressServeStaticCore.Response {
+  createBook(request: express.Request, response: express.Response) {
     let bookData = new book();
     bookData.Title = request.body.Title;
     bookData.PublisherName = request.body.PublisherName;
-    var result = this.bookService.createBook(bookData);
 
-    result.then(data => {
-      if (data.id > 0) {
-        return response.status(201).send(data);
-      } else {
-        return response.status(412);
-      }
+    this.bookService.createBook(bookData).then((bookInstance: book) => {
+      return response.status(201).send(bookInstance);
+    }).catch((error: Error) => {
+      return response.status(409).send(error);
     });
   }
 
 
-  updateBook(request: express.Request, response: express.Response): expressServeStaticCore.Response {
+  updateBook(request: express.Request, response: express.Response) {
     let bookData = new book();
     bookData.id = request.body.id;
     bookData.Title = request.body.Title;
     bookData.PublisherName = request.body.PublisherName;
     var result = this.bookService.updateBook(bookData);
 
-    result.then(data => {
-      if (data) {
-        return response.status(204).send(data);
-      } else {       
-        return response.status(412).send();        
-      }
+    this.bookService.updateBook(bookData).then((data: Boolean) => {
+      return response.status(204).send(data);
+    }).catch((error: Error) => {
+      return response.status(409).send(error);
     });
   }
 
-  getBook(request: express.Request, response: express.Response): expressServeStaticCore.Response {
+  getBook(request: express.Request, response: express.Response){
     const bookId = request.params["id"];
-    var result = this.bookService.getBook(bookId);
-
-    result.then(data => {
-      if (data) {
-        return response.status(200).send(data);
-      } else {
-        return response.status(412).send();
-      }
+    this.bookService.getBook(bookId).then((bookInstance: book) => {
+      return response.status(200).send(bookInstance);
+    }).catch((error: Error) => {
+      return response.status(500).send(error);
     });
   }
 
-  getAllBooks(request: express.Request, response: express.Response): expressServeStaticCore.Response {
-    var result = this.bookService.getAllBooks();
-
-    result.then(data => {
-      if (data) {
-        return response.status(200).send(data);
-      } else {
-        return response.status(412);
-      }
+  getAllBooks(request: express.Request, response: express.Response){
+    this.bookService.getAllBooks().then((books: book[]) => {
+      return response.status(200).send(books);
+    }).catch((error: Error) => {
+      return response.status(500).send(error);
     });
   }
 
   deleteBook(request: express.Request, response: express.Response) {
-    let result = response.status(500).send({ 'message': 'Dummy deleteBook Test' });
-    return result;
+    const bookId = request.params["id"];
+    this.bookService.deleteBook(bookId).then((data: Boolean) => {
+      return response.status(204).send(data);
+    }).catch((error: Error) => {
+      return response.status(500).send(error);
+    });
   }
 }

@@ -18,25 +18,21 @@ export class PublisherController {
     this.publisherService = new PublisherService();
   }
 
-  createPublisher(request: express.Request, response: express.Response): expressServeStaticCore.Response {
+  createPublisher(request: express.Request, response: express.Response) {
     let publisherData = new publisher();
     publisherData.Name = request.body.Name;
     publisherData.Address = request.body.Address;
     publisherData.Phone = request.body.Phone;
 
-    var result = this.publisherService.createPublisher(publisherData);
-
-    result.then(data => {
-      if (data.id > 0) {
-        return response.status(201).send(data);
-      } else {
-        return response.status(412);
-      }
+    this.publisherService.createPublisher(publisherData).then((publisherInstance: publisher) => {
+      return response.status(201).send(publisherInstance);
+    }).catch((error: Error) => {
+      return response.status(409).send(error);
     });
   }
 
 
-  updatePublisher(request: express.Request, response: express.Response): expressServeStaticCore.Response {
+  updatePublisher(request: express.Request, response: express.Response) {
     let publisherData = new publisher();
     publisherData.id = request.body.id;
     publisherData.Name = request.body.Name;
@@ -44,42 +40,36 @@ export class PublisherController {
     publisherData.Phone = request.body.Phone;
     var result = this.publisherService.updatePublisher(publisherData);
 
-    result.then(data => {
-      if (data) {
-        return response.status(204).send(data);
-      } else {
-        return response.status(412).send();
-      }
+    this.publisherService.updatePublisher(publisherData).then((data: Boolean) => {
+      return response.status(204).send(data);
+    }).catch((error: Error) => {
+      return response.status(409).send(error);
     });
   }
 
-  getPublisher(request: express.Request, response: express.Response): expressServeStaticCore.Response {
+  getPublisher(request: express.Request, response: express.Response){
     const publisherId = request.params["id"];
-    var result = this.publisherService.getPublisher(publisherId);
-
-    result.then(data => {
-      if (data) {
-        return response.status(200).send(data);
-      } else {
-        return response.status(412).send();
-      }
+    this.publisherService.getPublisher(publisherId).then((publisherInstance: publisher) => {
+      return response.status(200).send(publisherInstance);
+    }).catch((error: Error) => {
+      return response.status(500).send(error);
     });
   }
 
-  getAllPublishers(request: express.Request, response: express.Response): expressServeStaticCore.Response {
-    var result = this.publisherService.getAllPublishers();
-
-    result.then(data => {
-      if (data) {
-        return response.status(200).send(data);
-      } else {
-        return response.status(412);
-      }
+  getAllPublishers(request: express.Request, response: express.Response){
+    this.publisherService.getAllPublishers().then((publishers: publisher[]) => {
+      return response.status(200).send(publishers);
+    }).catch((error: Error) => {
+      return response.status(500).send(error);
     });
   }
 
   deletePublisher(request: express.Request, response: express.Response) {
-    let result = response.status(500).send({ 'message': 'Dummy deletePublisher Test' });
-    return result;
+    const publisherId = request.params["id"];
+    this.publisherService.deletePublisher(publisherId).then((data: Boolean) => {
+      return response.status(204).send();
+    }).catch((error: Error) => {
+      return response.status(500).send(error);
+    });
   }
 }

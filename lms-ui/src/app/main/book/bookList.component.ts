@@ -50,23 +50,19 @@ export class BookListComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dialog.open(EditBookComponent, {
       data: book
     }).afterClosed().subscribe((book) => {
-      debugger;
-
       if (book) {
         this.bookService.editBook(book)
           .subscribe(response => {
             if (response.statusCode == 204) {
-             
               const index = this.books.findIndex((existingBook) => existingBook.id === book.id);
               this.books[index] = book;
               this.subject$.next(this.books);
-            } else if (response.statusCode == 412) {
+            } else if (response.statusCode == 409) {
               alert('oops');
             }
           });
       }
     });
-
   }
 
   createBook() {
@@ -78,10 +74,22 @@ export class BookListComponent implements OnInit, AfterViewInit, OnDestroy {
               let book = response.responseBody as Book;
               this.books.push(book);
               this.subject$.next(this.books);
-            } else if (response.statusCode == 412) {
+            } else if (response.statusCode == 409) {
               alert('oops');
             }
           });
+      }
+    });
+  }
+
+  deleteBook(book) {    
+    this.bookService.deleteBook(book).subscribe(response => {      
+      if (response.statusCode == 204) {        
+        const index = this.books.findIndex((existingBook) => existingBook.id === book.id);
+        this.books.splice(index, 1);
+        this.subject$.next(this.books);
+      } else if (response.statusCode == 500) {
+        alert('oops');
       }
     });
   }
@@ -94,7 +102,6 @@ export class BookListComponent implements OnInit, AfterViewInit, OnDestroy {
       });
 
     this.dataSource = new MatTableDataSource();
-
     this.data$.pipe(
       filter(Boolean)
     ).subscribe((books) => {
