@@ -1,7 +1,7 @@
 import * as express from "express";
 import * as expressServeStaticCore from "express-serve-static-core"
 import { BorrowerService } from '../../businessService/borrower.service';
-import { borrower } from '../../domain/borrower';
+import { Borrower } from '../../domain/Borrower';
 
 export class BorrowerController {
 
@@ -19,12 +19,12 @@ export class BorrowerController {
   }
 
   createBorrower(request: express.Request, response: express.Response) {
-    let borrowerData = new borrower();
+    let borrowerData = new Borrower();
     borrowerData.Name = request.body.Name;
     borrowerData.Address = request.body.Address;
     borrowerData.Phone = request.body.Phone;
 
-    this.borrowerService.createBorrower(borrowerData).then((borrowerInstance: borrower) => {
+    this.borrowerService.createBorrower(borrowerData).then((borrowerInstance: Borrower) => {
       return response.status(201).send(borrowerInstance);
     }).catch((error: Error) => {
       return response.status(409).send(error);
@@ -33,7 +33,7 @@ export class BorrowerController {
 
 
   updateBorrower(request: express.Request, response: express.Response) {
-    let borrowerData = new borrower();
+    let borrowerData = new Borrower();
     borrowerData.Name = request.body.Name;
     borrowerData.Address = request.body.Address;
     borrowerData.Phone = request.body.Phone;
@@ -48,7 +48,7 @@ export class BorrowerController {
 
   getBorrower(request: express.Request, response: express.Response){
     const borrowerId = request.params["id"];
-    this.borrowerService.getBorrower(borrowerId).then((borrowerInstance: borrower) => {
+    this.borrowerService.getBorrower(borrowerId).then((borrowerInstance: Borrower) => {
       return response.status(200).send(borrowerInstance);
     }).catch((error: Error) => {
       return response.status(500).send(error);
@@ -56,7 +56,7 @@ export class BorrowerController {
   }
 
   getAllBorrowers(request: express.Request, response: express.Response){
-    this.borrowerService.getAllBorrowers().then((borrowers: borrower[]) => {
+    this.borrowerService.getAllBorrowers().then((borrowers: Borrower[]) => {
       return response.status(200).send(borrowers);
     }).catch((error: Error) => {
       return response.status(500).send(error);

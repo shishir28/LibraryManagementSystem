@@ -1,10 +1,10 @@
 import * as express from "express";
 import * as expressServeStaticCore from "express-serve-static-core"
-import { publisher } from '../domain/publisher';
+import { Publisher } from '../domain/Publisher';
 import { BaseRepository } from './BaseRepository';
 
-export class PublisherRepository extends BaseRepository<publisher>{
+export class PublisherRepository extends BaseRepository<Publisher>{
     constructor() {
-        super(publisher);
+        super(Publisher);
     }
 }

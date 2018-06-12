@@ -1,7 +1,7 @@
 import * as express from "express";
 import * as expressServeStaticCore from "express-serve-static-core"
 import { BookService } from '../../businessService/book.service';
-import { book } from '../../domain/book';
+import { Book } from '../../domain/Book';
 
 export class BookController {
 
@@ -19,11 +19,11 @@ export class BookController {
   }
 
   createBook(request: express.Request, response: express.Response) {
-    let bookData = new book();
+    let bookData = new Book();
     bookData.Title = request.body.Title;
-    bookData.PublisherName = request.body.PublisherName;
+    bookData.PublisherId = request.body.PublisherId;
 
-    this.bookService.createBook(bookData).then((bookInstance: book) => {
+    this.bookService.createBook(bookData).then((bookInstance: Book) => {
       return response.status(201).send(bookInstance);
     }).catch((error: Error) => {
       return response.status(409).send(error);
@@ -32,10 +32,10 @@ export class BookController {
 
 
   updateBook(request: express.Request, response: express.Response) {
-    let bookData = new book();
+    let bookData = new Book();
     bookData.id = request.body.id;
     bookData.Title = request.body.Title;
-    bookData.PublisherName = request.body.PublisherName;
+    bookData.PublisherId = request.body.PublisherId;
     var result = this.bookService.updateBook(bookData);
 
     this.bookService.updateBook(bookData).then((data: Boolean) => {
@@ -47,7 +47,7 @@ export class BookController {
 
   getBook(request: express.Request, response: express.Response){
     const bookId = request.params["id"];
-    this.bookService.getBook(bookId).then((bookInstance: book) => {
+    this.bookService.getBook(bookId).then((bookInstance: Book) => {
       return response.status(200).send(bookInstance);
     }).catch((error: Error) => {
       return response.status(500).send(error);
@@ -55,7 +55,7 @@ export class BookController {
   }
 
   getAllBooks(request: express.Request, response: express.Response){
-    this.bookService.getAllBooks().then((books: book[]) => {
+    this.bookService.getAllBooks().then((books: Book[]) => {
       return response.status(200).send(books);
     }).catch((error: Error) => {
       return response.status(500).send(error);

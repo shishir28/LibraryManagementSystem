@@ -1,6 +1,6 @@
 import * as express from "express";
 import { PublisherRepository } from '../persistence/publisher.repository';
-import { publisher } from "../domain/publisher";
+import { Publisher } from "../domain/Publisher";
 import { logger } from '../infrastructure/logger';
 
 export class PublisherService {
@@ -9,10 +9,10 @@ export class PublisherService {
     constructor() {
         this.publisherRepository = new PublisherRepository();
     }
-
-    async createPublisher(publisherData: publisher): Promise<publisher> {
-        let promise = new Promise<publisher>((resolve: Function, reject: Function) => {
-            return this.publisherRepository.Insert(publisherData).then((publisherInstance: publisher) => {
+    
+    async createPublisher(publisherData: Publisher): Promise<Publisher> {
+        let promise = new Promise<Publisher>((resolve: Function, reject: Function) => {
+            return this.publisherRepository.Insert(publisherData).then((publisherInstance: Publisher) => {
                 resolve(publisherInstance);
             }).catch((error: Error) => {
                 logger.error(error.message);
@@ -22,7 +22,7 @@ export class PublisherService {
         return promise;
     }
 
-    async updatePublisher(publisherData: publisher): Promise<Boolean> {
+    async updatePublisher(publisherData: Publisher): Promise<Boolean> {
         let promise = new Promise<Boolean>((resolve: Function, reject: Function) => {
             return this.publisherRepository.Update(publisherData.id, publisherData).then((updated: Boolean) => {
                 resolve(updated);
@@ -34,10 +34,10 @@ export class PublisherService {
         return promise;
     }
 
-    async getPublisher(publisherId: number): Promise<publisher> {
-        let promise = new Promise<publisher>((resolve: Function, reject: Function) => {
+    async getPublisher(publisherId: number): Promise<Publisher> {
+        let promise = new Promise<Publisher>((resolve: Function, reject: Function) => {
             return this.publisherRepository.GetById(publisherId)
-                .then((publisherInstance: publisher) => {
+                .then((publisherInstance: Publisher) => {
                     resolve(publisherInstance);
                 }).catch((error: Error) => {
                     logger.error(error.message);
@@ -47,10 +47,10 @@ export class PublisherService {
         return promise;
     }
 
-    async getAllPublishers(): Promise<publisher[]> {
-        let promise = new Promise<publisher[]>((resolve: Function, reject: Function) => {
+    async getAllPublishers(): Promise<Publisher[]> {
+        let promise = new Promise<Publisher[]>((resolve: Function, reject: Function) => {
             return this.publisherRepository.ListAll()
-                .then((publishers: publisher[]) => {
+                .then((publishers: Publisher[]) => {
                     resolve(publishers);
                 }).catch((error: Error) => {
                     logger.error(error.message);

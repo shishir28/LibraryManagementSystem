@@ -23,7 +23,7 @@ export class EditBookComponent implements OnInit {
     this.bookForm = this.formBuilder.group({
       id: [initialInfo.id],
       txtTitle: [initialInfo.Title,],
-      txtPublisherName: [initialInfo.PublisherName,],
+      txtPublisherName: [initialInfo.PublisherId,],
     });  
   }
 

@@ -1,7 +1,7 @@
 import { Table, Column, Model, PrimaryKey, AutoIncrement, DataType, AllowNull } from 'sequelize-typescript';
 
 @Table({ tableName: 'Branch' })
-export class branch extends Model<branch> {
+export class Branch extends Model<branch> {
 
     @PrimaryKey  
     @AutoIncrement  

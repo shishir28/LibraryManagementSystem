@@ -12,7 +12,7 @@ export class BookService {
     constructor(private http: Http, private location: Location) {
     }
 
-    getAllBooks(): Observable<Book[]> {
+    getAllBooks(): Observable<any[]> {
         return this.http.get(this.location.prepareExternalUrl("api/book"))
             .map(this.extractData);
     }
@@ -50,6 +50,7 @@ export class BookService {
 
     private extractData(res: Response) {
         let body = res.json();
+        console.log(body)
         return body || {};
     }
 }

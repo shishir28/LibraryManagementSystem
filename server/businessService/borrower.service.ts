@@ -1,6 +1,6 @@
 import * as express from "express";
 import { BorrowerRepository } from '../persistence/borrower.repository';
-import { borrower } from "../domain/borrower";
+import { Borrower } from "../domain/Borrower";
 import { logger } from '../infrastructure/logger';
 
 export class BorrowerService {
@@ -10,9 +10,9 @@ export class BorrowerService {
         this.borrowerRepository = new BorrowerRepository();
     }
 
-    async createBorrower(borrowerData: borrower): Promise<borrower> {
-        let promise = new Promise<borrower>((resolve: Function, reject: Function) => {
-            return this.borrowerRepository.Insert(borrowerData).then((borrowerInstance: borrower) => {
+    async createBorrower(borrowerData: Borrower): Promise<Borrower> {
+        let promise = new Promise<Borrower>((resolve: Function, reject: Function) => {
+            return this.borrowerRepository.Insert(borrowerData).then((borrowerInstance: Borrower) => {
                 resolve(borrowerInstance);
             }).catch((error: Error) => {
                 logger.error(error.message);
@@ -22,7 +22,7 @@ export class BorrowerService {
         return promise;
     }
 
-    async updateBorrower(borrowerData: borrower): Promise<Boolean> {
+    async updateBorrower(borrowerData: Borrower): Promise<Boolean> {
         let promise = new Promise<Boolean>((resolve: Function, reject: Function) => {
             return this.borrowerRepository.Update(borrowerData.id, borrowerData).then((updated: Boolean) => {
                 resolve(updated);
@@ -34,10 +34,10 @@ export class BorrowerService {
         return promise;
     }
 
-    async getBorrower(borrowerId: number): Promise<borrower> {
-        let promise = new Promise<borrower>((resolve: Function, reject: Function) => {
+    async getBorrower(borrowerId: number): Promise<Borrower> {
+        let promise = new Promise<Borrower>((resolve: Function, reject: Function) => {
             return this.borrowerRepository.GetById(borrowerId)
-                .then((borrowerInstance: borrower) => {
+                .then((borrowerInstance: Borrower) => {
                     resolve(borrowerInstance);
                 }).catch((error: Error) => {
                     logger.error(error.message);
@@ -47,10 +47,10 @@ export class BorrowerService {
         return promise;
     }
 
-    async getAllBorrowers(): Promise<borrower[]> {
-        let promise = new Promise<borrower[]>((resolve: Function, reject: Function) => {
+    async getAllBorrowers(): Promise<Borrower[]> {
+        let promise = new Promise<Borrower[]>((resolve: Function, reject: Function) => {
             return this.borrowerRepository.ListAll()
-                .then((borrowers: borrower[]) => {
+                .then((borrowers: Borrower[]) => {
                     resolve(borrowers);
                 }).catch((error: Error) => {
                     logger.error(error.message);

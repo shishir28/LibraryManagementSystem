@@ -1,7 +1,7 @@
 import * as express from "express";
 import * as expressServeStaticCore from "express-serve-static-core"
 import { AuthorService } from '../../businessService/author.service';
-import { author } from '../../domain/author';
+import { Author } from '../../domain/Author';
 
 export class AuthorController {
 
@@ -19,11 +19,11 @@ export class AuthorController {
   }
 
   createAuthor(request: express.Request, response: express.Response) {
-    let authorData = new author();
+    let authorData = new Author();
     authorData.BookId = request.body.BookId;
     authorData.AuthorName = request.body.AuthorName;
 
-    this.authorService.createAuthor(authorData).then((authorInstance: author) => {
+    this.authorService.createAuthor(authorData).then((authorInstance: Author) => {
       return response.status(201).send(authorInstance);
     }).catch((error: Error) => {
       return response.status(409).send(error);
@@ -31,7 +31,7 @@ export class AuthorController {
   }
 
   updateAuthor(request: express.Request, response: express.Response) {
-    let authorData = new author();
+    let authorData = new Author();
     authorData.id = request.body.id;
     authorData.BookId = request.body.BookId;
     authorData.AuthorName = request.body.AuthorName;
@@ -46,7 +46,7 @@ export class AuthorController {
 
   getAuthor(request: express.Request, response: express.Response){
     const authorId = request.params["id"];
-    this.authorService.getAuthor(authorId).then((authorInstance: author) => {
+    this.authorService.getAuthor(authorId).then((authorInstance: Author) => {
       return response.status(200).send(authorInstance);
     }).catch((error: Error) => {
       return response.status(500).send(error);
@@ -54,7 +54,7 @@ export class AuthorController {
   }
 
   getAllAuthors(request: express.Request, response: express.Response){
-    this.authorService.getAllAuthors().then((authors: author[]) => {
+    this.authorService.getAllAuthors().then((authors: Author[]) => {
       return response.status(200).send(authors);
     }).catch((error: Error) => {
       return response.status(500).send(error);

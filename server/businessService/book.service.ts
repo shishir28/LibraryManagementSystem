@@ -1,6 +1,6 @@
 import * as express from "express";
 import { BookRepository } from '../persistence/book.repository';
-import { book } from "../domain/book";
+import { Book } from "../domain/Book";
 import { logger } from '../infrastructure/logger';
 
 export class BookService {
@@ -10,9 +10,9 @@ export class BookService {
         this.bookRepository = new BookRepository();
     }
 
-    async createBook(bookData: book): Promise<book> {
-        let promise = new Promise<book>((resolve: Function, reject: Function) => {
-            return this.bookRepository.Insert(bookData).then((bookInstance: book) => {
+    async createBook(bookData: Book): Promise<Book> {
+        let promise = new Promise<Book>((resolve: Function, reject: Function) => {
+            return this.bookRepository.Insert(bookData).then((bookInstance: Book) => {
                 resolve(bookInstance);
             }).catch((error: Error) => {
                 logger.error(error.message);
@@ -22,7 +22,7 @@ export class BookService {
         return promise;
     }
 
-    async updateBook(bookData: book): Promise<Boolean> {
+    async updateBook(bookData: Book): Promise<Boolean> {
         let promise = new Promise<Boolean>((resolve: Function, reject: Function) => {
             return this.bookRepository.Update(bookData.id, bookData).then((updated: Boolean) => {
                 resolve(updated);
@@ -34,10 +34,10 @@ export class BookService {
         return promise;
     }
 
-    async getBook(bookId: number): Promise<book> {
-        let promise = new Promise<book>((resolve: Function, reject: Function) => {
+    async getBook(bookId: number): Promise<Book> {
+        let promise = new Promise<Book>((resolve: Function, reject: Function) => {
             return this.bookRepository.GetById(bookId)
-                .then((bookInstance: book) => {
+                .then((bookInstance: Book) => {
                     resolve(bookInstance);
                 }).catch((error: Error) => {
                     logger.error(error.message);
@@ -47,10 +47,10 @@ export class BookService {
         return promise;
     }
 
-    async getAllBooks(): Promise<book[]> {
-        let promise = new Promise<book[]>((resolve: Function, reject: Function) => {
-            return this.bookRepository.ListAll()
-                .then((books: book[]) => {
+    async getAllBooks(): Promise<Book[]> {
+        let promise = new Promise<Book[]>((resolve: Function, reject: Function) => {
+            return this.bookRepository.ListAlBooksWithPublisher()
+                .then((books: Book[]) => {
                     resolve(books);
                 }).catch((error: Error) => {
                     logger.error(error.message);

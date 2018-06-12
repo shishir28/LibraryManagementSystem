@@ -28,7 +28,7 @@ export class NewBookComponent implements OnInit {
 
     let bookDetail = {
       Title: this.bookForm.value.txtTitle,
-      PublisherName: this.bookForm.value.txtPublisherName
+      PublisherId: this.bookForm.value.txtPublisherName
     };
     this.dialogRef.close(bookDetail);
   }

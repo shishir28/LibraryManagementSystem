@@ -1,6 +1,6 @@
 import * as express from "express";
 import { AuthorRepository } from '../persistence/author.repository';
-import { author } from "../domain/author";
+import { Author } from "../domain/Author";
 import { logger } from '../infrastructure/logger';
 
 export class AuthorService {
@@ -10,9 +10,9 @@ export class AuthorService {
         this.authorRepository = new AuthorRepository();
     }
 
-    async createAuthor(authorData: author): Promise<author> {
-        let promise = new Promise<author>((resolve: Function, reject: Function) => {
-            return this.authorRepository.Insert(authorData).then((authorInstance: author) => {
+    async createAuthor(authorData: Author): Promise<Author> {
+        let promise = new Promise<Author>((resolve: Function, reject: Function) => {
+            return this.authorRepository.Insert(authorData).then((authorInstance: Author) => {
                 resolve(authorInstance);
             }).catch((error: Error) => {
                 logger.error(error.message);
@@ -22,7 +22,7 @@ export class AuthorService {
         return promise;
     }
 
-    async updateAuthor(authorData: author): Promise<Boolean> {
+    async updateAuthor(authorData: Author): Promise<Boolean> {
         let promise = new Promise<Boolean>((resolve: Function, reject: Function) => {
             return this.authorRepository.Update(authorData.id, authorData).then((updated: Boolean) => {
                 resolve(updated);
@@ -34,10 +34,10 @@ export class AuthorService {
         return promise;
     }
 
-    async getAuthor(authorId: number): Promise<author> {
-        let promise = new Promise<author>((resolve: Function, reject: Function) => {
+    async getAuthor(authorId: number): Promise<Author> {
+        let promise = new Promise<Author>((resolve: Function, reject: Function) => {
             return this.authorRepository.GetById(authorId)
-                .then((authorInstance: author) => {
+                .then((authorInstance: Author) => {
                     resolve(authorInstance);
                 }).catch((error: Error) => {
                     logger.error(error.message);
@@ -47,10 +47,10 @@ export class AuthorService {
         return promise;
     }
 
-    async getAllAuthors(): Promise<author[]> {
-        let promise = new Promise<author[]>((resolve: Function, reject: Function) => {
+    async getAllAuthors(): Promise<Author[]> {
+        let promise = new Promise<Author[]>((resolve: Function, reject: Function) => {
             return this.authorRepository.ListAll()
-                .then((authors: author[]) => {
+                .then((authors: Author[]) => {
                     resolve(authors);
                 }).catch((error: Error) => {
                     logger.error(error.message);

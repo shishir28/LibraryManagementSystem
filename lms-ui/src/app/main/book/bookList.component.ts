@@ -97,6 +97,9 @@ export class BookListComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.bookService.getAllBooks()
       .subscribe(records => {
+        records.forEach(element => {
+          element.PublisherName = element.publisher.Name;
+        });
         this.books = records.map(record => new Book(records));
         this.subject$.next(records);
       });

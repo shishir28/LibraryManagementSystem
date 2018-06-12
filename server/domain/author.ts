@@ -1,7 +1,7 @@
 import { Table, Column, Model, PrimaryKey, AutoIncrement, DataType, AllowNull } from 'sequelize-typescript';
 
 @Table({ tableName: 'BookAuthor' })
-export class author extends Model<author> {
+export class Author extends Model<Author> {
 
     @PrimaryKey  
     @AutoIncrement  

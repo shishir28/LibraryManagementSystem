@@ -1,7 +1,7 @@
 import * as express from "express";
 import * as expressServeStaticCore from "express-serve-static-core"
 import { PublisherService } from '../../businessService/publisher.service';
-import { publisher } from '../../domain/publisher';
+import { Publisher } from '../../domain/publisher';
 
 export class PublisherController {
 
@@ -19,12 +19,12 @@ export class PublisherController {
   }
 
   createPublisher(request: express.Request, response: express.Response) {
-    let publisherData = new publisher();
+    let publisherData = new Publisher();
     publisherData.Name = request.body.Name;
     publisherData.Address = request.body.Address;
     publisherData.Phone = request.body.Phone;
 
-    this.publisherService.createPublisher(publisherData).then((publisherInstance: publisher) => {
+    this.publisherService.createPublisher(publisherData).then((publisherInstance: Publisher) => {
       return response.status(201).send(publisherInstance);
     }).catch((error: Error) => {
       return response.status(409).send(error);
@@ -33,7 +33,7 @@ export class PublisherController {
 
 
   updatePublisher(request: express.Request, response: express.Response) {
-    let publisherData = new publisher();
+    let publisherData = new Publisher();
     publisherData.id = request.body.id;
     publisherData.Name = request.body.Name;
     publisherData.Address = request.body.Address;
@@ -49,7 +49,7 @@ export class PublisherController {
 
   getPublisher(request: express.Request, response: express.Response){
     const publisherId = request.params["id"];
-    this.publisherService.getPublisher(publisherId).then((publisherInstance: publisher) => {
+    this.publisherService.getPublisher(publisherId).then((publisherInstance: Publisher) => {
       return response.status(200).send(publisherInstance);
     }).catch((error: Error) => {
       return response.status(500).send(error);
@@ -57,7 +57,7 @@ export class PublisherController {
   }
 
   getAllPublishers(request: express.Request, response: express.Response){
-    this.publisherService.getAllPublishers().then((publishers: publisher[]) => {
+    this.publisherService.getAllPublishers().then((publishers: Publisher[]) => {
       return response.status(200).send(publishers);
     }).catch((error: Error) => {
       return response.status(500).send(error);

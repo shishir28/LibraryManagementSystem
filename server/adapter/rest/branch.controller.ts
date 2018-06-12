@@ -1,7 +1,7 @@
 import * as express from "express";
 import * as expressServeStaticCore from "express-serve-static-core"
 import { BranchService } from '../../businessService/branch.service';
-import { branch } from '../../domain/branch';
+import { Branch } from '../../domain/Branch';
 
 export class BranchController {
 
@@ -19,11 +19,11 @@ export class BranchController {
   }
 
   createBranch(request: express.Request, response: express.Response) {
-    let branchData = new branch();
+    let branchData = new Branch();
     branchData.BranchName = request.body.BranchName;
     branchData.Address = request.body.Address;
 
-    this.branchService.createBranch(branchData).then((branchInstance: branch) => {
+    this.branchService.createBranch(branchData).then((branchInstance: Branch) => {
       return response.status(201).send(branchInstance);
     }).catch((error: Error) => {
       return response.status(409).send(error);
@@ -31,7 +31,7 @@ export class BranchController {
   }
 
   updateBranch(request: express.Request, response: express.Response) {
-    let branchData = new branch();
+    let branchData = new Branch();
     branchData.id = request.body.id;
     branchData.BranchName = request.body.BranchName;
     branchData.Address = request.body.Address;
@@ -46,7 +46,7 @@ export class BranchController {
 
   getBranch(request: express.Request, response: express.Response){
     const branchId = request.params["id"];
-    this.branchService.getBranch(branchId).then((branchInstance: branch) => {
+    this.branchService.getBranch(branchId).then((branchInstance: Branch) => {
       return response.status(200).send(branchInstance);
     }).catch((error: Error) => {
       return response.status(500).send(error);
@@ -54,7 +54,7 @@ export class BranchController {
   }
 
   getAllBranches(request: express.Request, response: express.Response){
-    this.branchService.getAllBranches().then((branchs: branch[]) => {
+    this.branchService.getAllBranches().then((branchs: Branch[]) => {
       return response.status(200).send(branchs);
     }).catch((error: Error) => {
       return response.status(500).send(error);

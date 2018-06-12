@@ -1,7 +1,9 @@
-import { Table, Column, Model, PrimaryKey, AutoIncrement, DataType, AllowNull } from 'sequelize-typescript';
+import { Table, Column, Model, PrimaryKey, AutoIncrement, DataType, AllowNull, ForeignKey, BelongsTo, Scopes } from 'sequelize-typescript';
+import {Publisher} from "./Publisher";
 
+  
 @Table({ tableName: 'Book' })
-export class book extends Model<book> {
+export class Book extends Model<Book> {
 
     @PrimaryKey  
     @AutoIncrement  
@@ -12,7 +14,12 @@ export class book extends Model<book> {
     @Column({ type: DataType.STRING(200) })
     Title: string
 
-    @Column({ type: DataType.STRING(60) })
-    PublisherName: string
+    @ForeignKey(() => Publisher)
+    @Column({ type: DataType.INTEGER})    
+    PublisherId: number
+
+    @BelongsTo(() => Publisher)
+    publisher: Publisher;
 }
+
 

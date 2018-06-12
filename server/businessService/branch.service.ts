@@ -1,6 +1,6 @@
 import * as express from "express";
 import { BranchRepository } from '../persistence/branch.repository';
-import { branch } from "../domain/branch";
+import { Branch } from "../domain/Branch";
 import { logger } from '../infrastructure/logger';
 
 export class BranchService {
@@ -10,9 +10,9 @@ export class BranchService {
         this.branchRepository = new BranchRepository();
     }
 
-    async createBranch(branchData: branch): Promise<branch> {
-        let promise = new Promise<branch>((resolve: Function, reject: Function) => {
-            return this.branchRepository.Insert(branchData).then((branchInstance: branch) => {
+    async createBranch(branchData: Branch): Promise<Branch> {
+        let promise = new Promise<Branch>((resolve: Function, reject: Function) => {
+            return this.branchRepository.Insert(branchData).then((branchInstance: Branch) => {
                 resolve(branchInstance);
             }).catch((error: Error) => {
                 logger.error(error.message);
@@ -22,7 +22,7 @@ export class BranchService {
         return promise;
     }
 
-    async updateBranch(branchData: branch): Promise<Boolean> {
+    async updateBranch(branchData: Branch): Promise<Boolean> {
         let promise = new Promise<Boolean>((resolve: Function, reject: Function) => {
             return this.branchRepository.Update(branchData.id, branchData).then((updated: Boolean) => {
                 resolve(updated);
@@ -34,10 +34,10 @@ export class BranchService {
         return promise;
     }
 
-    async getBranch(branchId: number): Promise<branch> {
-        let promise = new Promise<branch>((resolve: Function, reject: Function) => {
+    async getBranch(branchId: number): Promise<Branch> {
+        let promise = new Promise<Branch>((resolve: Function, reject: Function) => {
             return this.branchRepository.GetById(branchId)
-                .then((branchInstance: branch) => {
+                .then((branchInstance: Branch) => {
                     resolve(branchInstance);
                 }).catch((error: Error) => {
                     logger.error(error.message);
@@ -47,10 +47,10 @@ export class BranchService {
         return promise;
     }
 
-    async getAllBranches(): Promise<branch[]> {
-        let promise = new Promise<branch[]>((resolve: Function, reject: Function) => {
+    async getAllBranches(): Promise<Branch[]> {
+        let promise = new Promise<Branch[]>((resolve: Function, reject: Function) => {
             return this.branchRepository.ListAll()
-                .then((branchs: branch[]) => {
+                .then((branchs: Branch[]) => {
                     resolve(branchs);
                 }).catch((error: Error) => {
                     logger.error(error.message);
