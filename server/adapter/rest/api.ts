@@ -8,6 +8,7 @@ import { BorrowerController } from './borrower.controller';
 import { PublisherController } from './publisher.controller';
 import { AuthorController } from "./author.controller";
 
+import { AutoMapperBootStrapper } from "../../autoMapperBootStrapper";
 class API {
     public api: express.Express;
 
@@ -15,6 +16,8 @@ class API {
         this.api = express();
         this.configureMiddlwares();
         this.mountRoutes();
+        let tempMapper = new AutoMapperBootStrapper();
+        tempMapper.bootstrap();
     }
 
     private mountRoutes(): void {

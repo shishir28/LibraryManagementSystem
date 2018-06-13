@@ -6,7 +6,7 @@ import { ReplaySubject } from 'rxjs/internal/ReplaySubject';
 import { filter } from 'rxjs/operators';
 import { ListColumn } from '../../core/common/list/list-column.model';
 import { fadeOutAnimation } from '../../core/common/route.animation';
-import { Book } from './shared/book.model';
+import { BookViewModel } from './shared/bookViewModel';
 import { BookService } from './shared/services/book.service'
 import { NewBookComponent } from './new-book.component';
 import { EditBookComponent } from './edit-book.component';
@@ -20,9 +20,9 @@ import { EditBookComponent } from './edit-book.component';
 })
 export class BookListComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  subject$: ReplaySubject<Book[]> = new ReplaySubject<Book[]>(1);
-  data$: Observable<Book[]> = this.subject$.asObservable();
-  books: Book[];
+  subject$: ReplaySubject<BookViewModel[]> = new ReplaySubject<BookViewModel[]>(1);
+  data$: Observable<BookViewModel[]> = this.subject$.asObservable();
+  books: BookViewModel[];
 
   @Input()
   columns: ListColumn[] = [
@@ -34,7 +34,7 @@ export class BookListComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ] as ListColumn[];
   pageSize = 10;
-  dataSource: MatTableDataSource<Book> | null;
+  dataSource: MatTableDataSource<BookViewModel> | null;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -66,12 +66,12 @@ export class BookListComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   createBook() {
-    this.dialog.open(NewBookComponent).afterClosed().subscribe((book: Book) => {
+    this.dialog.open(NewBookComponent).afterClosed().subscribe((book: BookViewModel) => {
       if (book) {
         this.bookService.addBook(book)
           .subscribe(response => {
             if (response.statusCode == 201) {
-              let book = response.responseBody as Book;
+              let book = response.responseBody as BookViewModel;
               this.books.push(book);
               this.subject$.next(this.books);
             } else if (response.statusCode == 409) {
@@ -97,10 +97,7 @@ export class BookListComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.bookService.getAllBooks()
       .subscribe(records => {
-        records.forEach(element => {
-          element.PublisherName = element.publisher.Name;
-        });
-        this.books = records.map(record => new Book(records));
+        this.books = records.map(record => new BookViewModel(records));
         this.subject$.next(records);
       });
 

@@ -2,6 +2,9 @@ import * as express from "express";
 import * as expressServeStaticCore from "express-serve-static-core"
 import { BookService } from '../../businessService/book.service';
 import { Book } from '../../domain/Book';
+import { } from "automapper-ts/dist/automapper";
+import { BookViewModel } from "../viewModel/bookViewModel";
+import { logger } from "../../infrastructure/logger";
 
 export class BookController {
 
@@ -22,7 +25,6 @@ export class BookController {
     let bookData = new Book();
     bookData.Title = request.body.Title;
     bookData.PublisherId = request.body.PublisherId;
-
     this.bookService.createBook(bookData).then((bookInstance: Book) => {
       return response.status(201).send(bookInstance);
     }).catch((error: Error) => {
@@ -45,7 +47,7 @@ export class BookController {
     });
   }
 
-  getBook(request: express.Request, response: express.Response){
+  getBook(request: express.Request, response: express.Response) {
     const bookId = request.params["id"];
     this.bookService.getBook(bookId).then((bookInstance: Book) => {
       return response.status(200).send(bookInstance);
@@ -54,9 +56,10 @@ export class BookController {
     });
   }
 
-  getAllBooks(request: express.Request, response: express.Response){
+  getAllBooks(request: express.Request, response: express.Response) {
     this.bookService.getAllBooks().then((books: Book[]) => {
-      return response.status(200).send(books);
+      let result = (automapper.map('Book', 'BookViewModel', books) as BookViewModel[]);
+      return response.status(200).send(result);
     }).catch((error: Error) => {
       return response.status(500).send(error);
     });

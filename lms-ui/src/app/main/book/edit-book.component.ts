@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Book } from './shared/book.model';
+import { BookViewModel } from './shared/bookViewModel';
 
 @Component({
   selector: 'lms-edit-book',
@@ -19,7 +19,7 @@ export class EditBookComponent implements OnInit {
 
   ngOnInit() {
     
-    let initialInfo = this.defaults as Book;
+    let initialInfo = this.defaults as BookViewModel;
     this.bookForm = this.formBuilder.group({
       id: [initialInfo.id],
       txtTitle: [initialInfo.Title,],

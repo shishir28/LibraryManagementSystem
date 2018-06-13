@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { httpResultObject } from '../../../../shared/httpResultObject';
-import { Book } from '../book.model';
+import { BookViewModel } from '../bookViewModel';
 
 @Injectable()
 export class BookService {
@@ -27,7 +27,7 @@ export class BookService {
             });
     }
 
-    editBook(book:Book): Observable<httpResultObject<any>> {        
+    editBook(book:BookViewModel): Observable<httpResultObject<any>> {        
         return this.http.put(this.location.prepareExternalUrl("api/book/"+book.id), JSON.stringify(book))
             .map(res => {
                 let result = new httpResultObject<any>();
@@ -37,7 +37,7 @@ export class BookService {
             });
     }
 
-    deleteBook(book:Book): Observable<httpResultObject<any>> {            
+    deleteBook(book:BookViewModel): Observable<httpResultObject<any>> {            
         return this.http.delete(this.location.prepareExternalUrl("api/book/"+book.id))
             .map(res => {
                 let result = new httpResultObject<any>();                

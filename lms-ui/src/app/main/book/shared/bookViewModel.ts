@@ -1,4 +1,4 @@
-export class Book {
+export class BookViewModel {
     id: number;
     Title: string;
     PublisherId: number;

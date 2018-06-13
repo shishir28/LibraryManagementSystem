@@ -19,7 +19,7 @@ export class BookRepository extends BaseRepository<Book>{
             ]
         })
             .then((data: any) => {
-                return data;
+                return data.map(y => y.dataValues)
             });
     }
     
