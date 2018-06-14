@@ -1,5 +1,5 @@
 <div class="all-in-one-table" furyPage furyPagePadding furyScrollbar>
-    <lms-breadcrumbs current="Publisher"></lms-breadcrumbs>
+    <lms-breadcrumbs current="Publishers"></lms-breadcrumbs>
     <div class="list-table">
       <lms-list name="Publishers" [columns]="columns" (filterChange)="onFilterChange($event)">
           <div class="actions">
@@ -29,8 +29,6 @@
                     </mat-cell>
                   </ng-container>
                 </ng-container>
-  
-         
            <!-- actions Column -->
            <ng-container matColumnDef="actions">
               <mat-header-cell class="actions-cell" *matHeaderCellDef mat-sort-header></mat-header-cell>

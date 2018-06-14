@@ -27,7 +27,7 @@ export class AppComponent {
     });
 
     menu.push({
-      name: 'Book',
+      name: 'Books',
       routeOrFunction: '/books',
       icon: 'description',
       position: 10,

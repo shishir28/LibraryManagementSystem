@@ -1,7 +1,7 @@
 <div class="all-in-one-table" furyPage furyPagePadding furyScrollbar>
-  <lms-breadcrumbs current="Branch"></lms-breadcrumbs>
+  <lms-breadcrumbs current="Branches"></lms-breadcrumbs>
   <div class="list-table">
-    <lms-list name="Branchs" [columns]="columns" (filterChange)="onFilterChange($event)">
+    <lms-list name="Branches" [columns]="columns" (filterChange)="onFilterChange($event)">
       <div class="actions">
         <button class="create" (click)="createBranch()" type="button" mat-mini-fab color="primary">
           <mat-icon>add</mat-icon>
@@ -28,8 +28,6 @@
             </mat-cell>
           </ng-container>
         </ng-container>
-
-
         <!-- actions Column -->
         <ng-container matColumnDef="actions">
           <mat-header-cell class="actions-cell" *matHeaderCellDef mat-sort-header></mat-header-cell>
