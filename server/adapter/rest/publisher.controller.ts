@@ -1,7 +1,9 @@
 import * as express from "express";
 import * as expressServeStaticCore from "express-serve-static-core"
 import { PublisherService } from '../../businessService/publisher.service';
-import { Publisher } from '../../domain/publisher';
+import { } from "automapper-ts/dist/automapper";
+import { Publisher } from '../../domain/Publisher';
+import { PublisherViewModel } from '../viewModel/publisherViewModel';
 
 export class PublisherController {
 
@@ -25,12 +27,12 @@ export class PublisherController {
     publisherData.Phone = request.body.Phone;
 
     this.publisherService.createPublisher(publisherData).then((publisherInstance: Publisher) => {
-      return response.status(201).send(publisherInstance);
+      let result = (automapper.map('Publisher', 'PublisherViewModel', publisherInstance) as PublisherViewModel);
+      return response.status(201).send(result);
     }).catch((error: Error) => {
       return response.status(409).send(error);
     });
   }
-
 
   updatePublisher(request: express.Request, response: express.Response) {
     let publisherData = new Publisher();
@@ -50,7 +52,8 @@ export class PublisherController {
   getPublisher(request: express.Request, response: express.Response){
     const publisherId = request.params["id"];
     this.publisherService.getPublisher(publisherId).then((publisherInstance: Publisher) => {
-      return response.status(200).send(publisherInstance);
+      let result = (automapper.map('Publisher', 'PublisherViewModel', publisherInstance) as PublisherViewModel);
+      return response.status(200).send(result);
     }).catch((error: Error) => {
       return response.status(500).send(error);
     });
@@ -58,7 +61,8 @@ export class PublisherController {
 
   getAllPublishers(request: express.Request, response: express.Response){
     this.publisherService.getAllPublishers().then((publishers: Publisher[]) => {
-      return response.status(200).send(publishers);
+      let result = (automapper.map('Publisher', 'PublisherViewModel', publishers) as PublisherViewModel[]);
+      return response.status(200).send(result);
     }).catch((error: Error) => {
       return response.status(500).send(error);
     });

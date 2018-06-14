@@ -9,6 +9,9 @@ import { PageModule } from '../../core/common/page/page.module';
 import { PublisherService } from './shared/services/publisher.service';
 
 import { PublisherListComponent } from './publisherList.component';
+import { NewPublisherComponent } from './new-publisher.component';
+import { EditPublisherComponent } from './edit-publisher.component';
+
 
 export const publisherConfig: NgModule = {
   imports: [
@@ -20,8 +23,10 @@ export const publisherConfig: NgModule = {
     PageModule,
     BreadcrumbsModule
   ],
-  declarations: [PublisherListComponent],
-  exports: [PublisherListComponent],
+  declarations: [PublisherListComponent, NewPublisherComponent, EditPublisherComponent],
+  exports: [PublisherListComponent, NewPublisherComponent, EditPublisherComponent],
+  entryComponents: [NewPublisherComponent, EditPublisherComponent],
+
   providers: [
     PublisherService
   ]

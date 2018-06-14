@@ -1,7 +1,11 @@
 import * as express from "express";
 import * as expressServeStaticCore from "express-serve-static-core"
 import { BranchService } from '../../businessService/branch.service';
+
+import { } from "automapper-ts/dist/automapper";
 import { Branch } from '../../domain/Branch';
+import { BranchViewModel } from '../viewModel/branchViewModel';
+
 
 export class BranchController {
 
@@ -24,7 +28,8 @@ export class BranchController {
     branchData.Address = request.body.Address;
 
     this.branchService.createBranch(branchData).then((branchInstance: Branch) => {
-      return response.status(201).send(branchInstance);
+      let result = (automapper.map('Branch', 'BranchViewModel', branchInstance) as BranchViewModel);
+      return response.status(201).send(result);
     }).catch((error: Error) => {
       return response.status(409).send(error);
     });
@@ -47,15 +52,17 @@ export class BranchController {
   getBranch(request: express.Request, response: express.Response){
     const branchId = request.params["id"];
     this.branchService.getBranch(branchId).then((branchInstance: Branch) => {
-      return response.status(200).send(branchInstance);
+      let result = (automapper.map('Branch', 'BranchViewModel', branchInstance) as BranchViewModel);
+      return response.status(200).send(result);
     }).catch((error: Error) => {
       return response.status(500).send(error);
     });
   }
 
   getAllBranches(request: express.Request, response: express.Response){
-    this.branchService.getAllBranches().then((branchs: Branch[]) => {
-      return response.status(200).send(branchs);
+    this.branchService.getAllBranches().then((branches: Branch[]) => {
+      let result = (automapper.map('Branch', 'BranchViewModel', branches) as BranchViewModel[]);
+      return response.status(200).send(result);
     }).catch((error: Error) => {
       return response.status(500).send(error);
     });

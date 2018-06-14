@@ -9,11 +9,10 @@ export class Publisher extends Model<Publisher> {
     @Column({ type: DataType.INTEGER, field: 'PublisherId' })
     id: number
 
-    @Column({ type: DataType.STRING(60) })
+    @Column({ type: DataType.STRING(50) })
     Name: string
 
-
-    @Column({ type: DataType.STRING(200) })
+    @Column({ type: DataType.STRING(250) })
     Address: string
 
     @Column({ type: DataType.STRING(20) })

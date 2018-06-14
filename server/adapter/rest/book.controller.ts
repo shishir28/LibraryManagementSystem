@@ -26,7 +26,8 @@ export class BookController {
     bookData.Title = request.body.Title;
     bookData.PublisherId = request.body.PublisherId;
     this.bookService.createBook(bookData).then((bookInstance: Book) => {
-      return response.status(201).send(bookInstance);
+      let result = (automapper.map('Book', 'BookViewModel', bookInstance) as BookViewModel);
+      return response.status(201).send(result);
     }).catch((error: Error) => {
       return response.status(409).send(error);
     });
@@ -50,7 +51,8 @@ export class BookController {
   getBook(request: express.Request, response: express.Response) {
     const bookId = request.params["id"];
     this.bookService.getBook(bookId).then((bookInstance: Book) => {
-      return response.status(200).send(bookInstance);
+      let result = (automapper.map('Book', 'BookViewModel', bookInstance) as BookViewModel);
+      return response.status(200).send(result);
     }).catch((error: Error) => {
       return response.status(500).send(error);
     });

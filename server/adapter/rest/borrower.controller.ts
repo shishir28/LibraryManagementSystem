@@ -1,7 +1,9 @@
 import * as express from "express";
 import * as expressServeStaticCore from "express-serve-static-core"
 import { BorrowerService } from '../../businessService/borrower.service';
+import { } from "automapper-ts/dist/automapper";
 import { Borrower } from '../../domain/Borrower';
+import { BorrowerViewModel } from '../viewModel/borrowerViewModel';
 
 export class BorrowerController {
 
@@ -25,15 +27,16 @@ export class BorrowerController {
     borrowerData.Phone = request.body.Phone;
 
     this.borrowerService.createBorrower(borrowerData).then((borrowerInstance: Borrower) => {
-      return response.status(201).send(borrowerInstance);
+      let result = (automapper.map('Borrower', 'BorrowerViewModel', borrowerInstance) as BorrowerViewModel);
+      return response.status(201).send(result);
     }).catch((error: Error) => {
       return response.status(409).send(error);
     });
   }
 
-
   updateBorrower(request: express.Request, response: express.Response) {
     let borrowerData = new Borrower();
+    borrowerData.id = request.body.id;
     borrowerData.Name = request.body.Name;
     borrowerData.Address = request.body.Address;
     borrowerData.Phone = request.body.Phone;
@@ -49,7 +52,8 @@ export class BorrowerController {
   getBorrower(request: express.Request, response: express.Response){
     const borrowerId = request.params["id"];
     this.borrowerService.getBorrower(borrowerId).then((borrowerInstance: Borrower) => {
-      return response.status(200).send(borrowerInstance);
+      let result = (automapper.map('Borrower', 'BorrowerViewModel', borrowerInstance) as BorrowerViewModel);
+      return response.status(200).send(result);
     }).catch((error: Error) => {
       return response.status(500).send(error);
     });
@@ -57,7 +61,8 @@ export class BorrowerController {
 
   getAllBorrowers(request: express.Request, response: express.Response){
     this.borrowerService.getAllBorrowers().then((borrowers: Borrower[]) => {
-      return response.status(200).send(borrowers);
+      let result = (automapper.map('Borrower', 'BorrowerViewModel', borrowers) as BorrowerViewModel[]);
+      return response.status(200).send(result);
     }).catch((error: Error) => {
       return response.status(500).send(error);
     });

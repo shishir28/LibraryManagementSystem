@@ -11,6 +11,10 @@ export class AutoMapperBootStrapper {
         automapper.initialize((config: AutoMapperJs.IConfiguration) => {
             config.createMap('Book', 'BookViewModel')
                 .forMember('PublisherName', (opts: AutoMapperJs.IMemberConfigurationOptions) => opts.mapFrom('publisher.Name'));
+
+            config.createMap('Branch', 'BranchViewModel');
+            config.createMap('Borrower', 'BorrowerViewModel');
+            config.createMap('Publisher', 'PublisherViewModel');
         });
     }
 }

@@ -9,6 +9,9 @@ import { PageModule } from '../../core/common/page/page.module';
 import { BranchService } from './shared/services/branch.service';
 
 import { BranchListComponent } from './branchList.component';
+import { NewBranchComponent } from './new-branch.component';
+import { EditBranchComponent } from './edit-branch.component';
+
 
 export const branchConfig: NgModule = {
   imports: [
@@ -20,8 +23,10 @@ export const branchConfig: NgModule = {
     PageModule,
     BreadcrumbsModule
   ],
-  declarations: [BranchListComponent],
-  exports: [BranchListComponent],
+  declarations: [BranchListComponent, NewBranchComponent, EditBranchComponent],
+  exports: [BranchListComponent, NewBranchComponent, EditBranchComponent],
+  entryComponents: [NewBranchComponent, EditBranchComponent],
+
   providers: [
     BranchService
   ]

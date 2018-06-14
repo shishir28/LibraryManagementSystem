@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>Borrower</h2>
+
+<form [formGroup]="borrowerForm" (ngSubmit)="save()">
+  <mat-dialog-content>
+
+      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+          <mat-form-field fxFlex>
+            <mat-placeholder>Name</mat-placeholder>
+            <input type="text" formControlName="txtName" matInput>
+          </mat-form-field>
+        </div>
+        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+            <mat-form-field fxFlex>
+              <mat-placeholder>Address</mat-placeholder>
+              <input type="text" formControlName="txtAddress" matInput>
+            </mat-form-field>
+          </div>
+          <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
+              <mat-form-field fxFlex>
+                <mat-placeholder>Phone</mat-placeholder>
+                <input type="text" formControlName="txtPhone" matInput>
+              </mat-form-field>
+          </div>
+
+  </mat-dialog-content>
+  <mat-dialog-actions fxLayout="row" fxLayoutAlign="end center">
+    <button mat-button [disabled]="!borrowerForm.valid">UPDATE BORROWER</button>
+  </mat-dialog-actions>
+</form>

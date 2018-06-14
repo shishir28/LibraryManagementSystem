@@ -7,8 +7,10 @@ import { MaterialModule } from '../../core/common/material-components.module';
 import { PageModule } from '../../core/common/page/page.module';
 
 import { BorrowerService } from './shared/services/borrower.service';
-
 import { BorrowerListComponent } from './borrowerList.component';
+import { NewBorrowerComponent } from './new-borrower.component';
+import { EditBorrowerComponent } from './edit-borrower.component';
+
 
 export const borrowerConfig: NgModule = {
   imports: [
@@ -20,8 +22,10 @@ export const borrowerConfig: NgModule = {
     PageModule,
     BreadcrumbsModule
   ],
-  declarations: [BorrowerListComponent],
-  exports: [BorrowerListComponent],
+  declarations: [BorrowerListComponent, NewBorrowerComponent, EditBorrowerComponent],
+  exports: [BorrowerListComponent, NewBorrowerComponent, EditBorrowerComponent],
+  entryComponents: [NewBorrowerComponent, EditBorrowerComponent],
+
   providers: [
     BorrowerService
   ]

@@ -26,7 +26,7 @@ export class EditBookComponent implements OnInit {
 
     let initialInfo = this.defaults as BookViewModel;
 
-    this.publisherService.getAllPublisheres()
+    this.publisherService.getAllPublishers()
       .subscribe(publishers => {
         this.publishers = publishers;
         this.selectedPublisherId = initialInfo.PublisherId

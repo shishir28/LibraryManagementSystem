@@ -31,6 +31,10 @@ import { authorConfig } from './author/author.module';
     ],
     entryComponents: [
         ...bookConfig.entryComponents,
+        ...borrowerConfig.entryComponents,
+        ...branchConfig.entryComponents,
+        ...publisherConfig.entryComponents,
+        // ...authorConfig.entryComponents,
 
     ],
     exports: [

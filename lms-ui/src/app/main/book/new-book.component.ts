@@ -25,7 +25,7 @@ export class NewBookComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.publisherService.getAllPublisheres()
+    this.publisherService.getAllPublishers()
       .subscribe(publishers => {
         this.publishers = publishers;
       })
