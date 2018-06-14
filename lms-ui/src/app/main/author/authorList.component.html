@@ -1,11 +1,26 @@
 <div class="all-in-one-table" furyPage furyPagePadding furyScrollbar>
-  <lms-breadcrumbs current="Authors"></lms-breadcrumbs>
+  <lms-breadcrumbs current="Author"></lms-breadcrumbs>
   <div class="list-table">
     <lms-list name="Authors" [columns]="columns" (filterChange)="onFilterChange($event)">
+      <div class="actions">
+        <button class="create" (click)="createAuthor()" type="button" mat-mini-fab color="primary">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
       <mat-table #table [dataSource]="dataSource" matSort>
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="checkbox">
+          <mat-header-cell class="actions-cell" *matHeaderCellDef>
+            <mat-checkbox color="primary" (click)="$event.stopPropagation()"></mat-checkbox>
+          </mat-header-cell>
+          <mat-cell class="actions-cell" *matCellDef="let row">
+            <span class="fury-mobile-label"></span>
+            <mat-checkbox color="primary" (click)="$event.stopPropagation()"></mat-checkbox>
+          </mat-cell>
+        </ng-container>
 
         <ng-container *ngFor="let column of columns">
-          <ng-container [matColumnDef]="column.property">
+          <ng-container *ngIf="column.isModelProperty" [matColumnDef]="column.property">
             <mat-header-cell *matHeaderCellDef mat-sort-header> {{ column.name }}</mat-header-cell>
             <mat-cell *matCellDef="let row">
               <span class="lms-mobile-label">{{ column.name }}</span>
@@ -13,8 +28,29 @@
             </mat-cell>
           </ng-container>
         </ng-container>
+
+
+        <!-- actions Column -->
+        <ng-container matColumnDef="actions">
+          <mat-header-cell class="actions-cell" *matHeaderCellDef mat-sort-header></mat-header-cell>
+          <mat-cell class="actions-cell" *matCellDef="let row">
+            <span class="fury-mobile-label"></span>
+            <button type="button" mat-icon-button [matMenuTriggerFor]="actionsMenu" (click)="$event.stopPropagation()">
+              <mat-icon>more_horiz</mat-icon>
+            </button>
+
+            <mat-menu #actionsMenu="matMenu" yPosition="below" xPosition="before">
+              <button (click)="updateAuthor(row)" mat-menu-item>
+                <span>Modify</span>
+              </button>
+              <button (click)="deleteAuthor(row)" mat-menu-item>
+                <span>Delete</span>
+              </button>
+            </mat-menu>
+          </mat-cell>
+        </ng-container>
         <mat-header-row *matHeaderRowDef="visibleColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: visibleColumns;" (click)="updateCustomer(row)" class="clickable"></mat-row>
+        <mat-row *matRowDef="let row; columns: visibleColumns;" (click)="updateAuthor(row)" class="clickable"></mat-row>
       </mat-table>
       <mat-paginator class="paginator" [pageSize]="pageSize"></mat-paginator>
     </lms-list>

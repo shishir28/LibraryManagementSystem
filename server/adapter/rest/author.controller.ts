@@ -1,7 +1,11 @@
 import * as express from "express";
 import * as expressServeStaticCore from "express-serve-static-core"
 import { AuthorService } from '../../businessService/author.service';
+
+import { } from "automapper-ts/dist/automapper";
 import { Author } from '../../domain/Author';
+import { AuthorViewModel } from '../viewModel/authorViewModel';
+
 
 export class AuthorController {
 
@@ -10,7 +14,7 @@ export class AuthorController {
     api.post('/api/author', (request: express.Request, response: express.Response) => this.createAuthor(request, response));
     api.put('/api/author/:id', (request: express.Request, response: express.Response) => this.updateAuthor(request, response));
     api.get('/api/author/:id', (request: express.Request, response: express.Response) => this.getAuthor(request, response));
-    api.get('/api/author', (request: express.Request, response: express.Response) => this.getAllAuthors(request, response));
+    api.get('/api/author', (request: express.Request, response: express.Response) => this.getAllAuthores(request, response));
     api.delete('/api/author/:id', (request: express.Request, response: express.Response) => this.deleteAuthor(request, response));
   }
 
@@ -20,11 +24,11 @@ export class AuthorController {
 
   createAuthor(request: express.Request, response: express.Response) {
     let authorData = new Author();
-    authorData.BookId = request.body.BookId;
-    authorData.AuthorName = request.body.AuthorName;
+    authorData.AuthorName = request.body.AuthorName;   
 
     this.authorService.createAuthor(authorData).then((authorInstance: Author) => {
-      return response.status(201).send(authorInstance);
+      let result = (automapper.map('Author', 'AuthorViewModel', authorInstance) as AuthorViewModel);
+      return response.status(201).send(result);
     }).catch((error: Error) => {
       return response.status(409).send(error);
     });
@@ -33,7 +37,6 @@ export class AuthorController {
   updateAuthor(request: express.Request, response: express.Response) {
     let authorData = new Author();
     authorData.id = request.body.id;
-    authorData.BookId = request.body.BookId;
     authorData.AuthorName = request.body.AuthorName;
     var result = this.authorService.updateAuthor(authorData);
 
@@ -47,15 +50,17 @@ export class AuthorController {
   getAuthor(request: express.Request, response: express.Response){
     const authorId = request.params["id"];
     this.authorService.getAuthor(authorId).then((authorInstance: Author) => {
-      return response.status(200).send(authorInstance);
+      let result = (automapper.map('Author', 'AuthorViewModel', authorInstance) as AuthorViewModel);
+      return response.status(200).send(result);
     }).catch((error: Error) => {
       return response.status(500).send(error);
     });
   }
 
-  getAllAuthors(request: express.Request, response: express.Response){
-    this.authorService.getAllAuthors().then((authors: Author[]) => {
-      return response.status(200).send(authors);
+  getAllAuthores(request: express.Request, response: express.Response){
+    this.authorService.getAllAuthores().then((authores: Author[]) => {
+      let result = (automapper.map('Author', 'AuthorViewModel', authores) as AuthorViewModel[]);
+      return response.status(200).send(result);
     }).catch((error: Error) => {
       return response.status(500).send(error);
     });

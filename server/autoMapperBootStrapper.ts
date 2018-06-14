@@ -15,6 +15,8 @@ export class AutoMapperBootStrapper {
             config.createMap('Branch', 'BranchViewModel');
             config.createMap('Borrower', 'BorrowerViewModel');
             config.createMap('Publisher', 'PublisherViewModel');
+            config.createMap('Author', 'AuthorViewModel');
+
         });
     }
 }

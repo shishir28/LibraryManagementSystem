@@ -34,7 +34,7 @@ import { authorConfig } from './author/author.module';
         ...borrowerConfig.entryComponents,
         ...branchConfig.entryComponents,
         ...publisherConfig.entryComponents,
-        // ...authorConfig.entryComponents,
+        ...authorConfig.entryComponents,
 
     ],
     exports: [

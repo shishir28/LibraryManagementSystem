@@ -47,7 +47,7 @@ export class AuthorService {
         return promise;
     }
 
-    async getAllAuthors(): Promise<Author[]> {
+    async getAllAuthores(): Promise<Author[]> {
         let promise = new Promise<Author[]>((resolve: Function, reject: Function) => {
             return this.authorRepository.ListAll()
                 .then((authors: Author[]) => {
