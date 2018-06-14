@@ -6,7 +6,7 @@ import { ReplaySubject } from 'rxjs/internal/ReplaySubject';
 import { filter } from 'rxjs/operators';
 import { ListColumn } from '../../core/common/list/list-column.model';
 import { fadeOutAnimation } from '../../core/common/route.animation';
-import { Publisher } from './shared/publisher.model';
+import { PublisherViewModel } from './shared/publisherViewModel';
 import { PublisherService } from './shared/services/publisher.service'
 
 @Component({
@@ -18,9 +18,9 @@ import { PublisherService } from './shared/services/publisher.service'
 })
 export class PublisherListComponent implements OnInit, AfterViewInit, OnDestroy {
  
-  subject$: ReplaySubject<Publisher[]> = new ReplaySubject<Publisher[]>(1);
-  data$: Observable<Publisher[]> = this.subject$.asObservable();
-  publisheres: Publisher[];
+  subject$: ReplaySubject<PublisherViewModel[]> = new ReplaySubject<PublisherViewModel[]>(1);
+  data$: Observable<PublisherViewModel[]> = this.subject$.asObservable();
+  publisheres: PublisherViewModel[];
 
   @Input()
   columns: ListColumn[] = [
@@ -35,7 +35,7 @@ export class PublisherListComponent implements OnInit, AfterViewInit, OnDestroy 
 
 
   pageSize = 10;
-  dataSource: MatTableDataSource<Publisher> | null;
+  dataSource: MatTableDataSource<PublisherViewModel> | null;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -51,7 +51,7 @@ export class PublisherListComponent implements OnInit, AfterViewInit, OnDestroy 
   ngOnInit() {
     this.borrowerService.getAllPublisheres()
     .subscribe(records=> {
-      this.publisheres  =  records.map(record=> new Publisher(records));
+      this.publisheres  =  records.map(record=> new PublisherViewModel(records));
       this.subject$.next(records);
     });
   

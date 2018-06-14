@@ -5,14 +5,14 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
-import { Publisher } from '../publisher.model';
+import { PublisherViewModel } from '../publisherViewModel';
 
 @Injectable()
 export class PublisherService {
     constructor(private http: Http, private location: Location) {
     }
 
-    getAllPublisheres(): Observable<Publisher[]> {
+    getAllPublisheres(): Observable<PublisherViewModel[]> {
         return this.http.get((this.location.prepareExternalUrl("api/publisher" )))
         .map(this.extractData);    
     }

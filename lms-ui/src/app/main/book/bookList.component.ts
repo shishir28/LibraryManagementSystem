@@ -7,7 +7,9 @@ import { filter } from 'rxjs/operators';
 import { ListColumn } from '../../core/common/list/list-column.model';
 import { fadeOutAnimation } from '../../core/common/route.animation';
 import { BookViewModel } from './shared/bookViewModel';
-import { BookService } from './shared/services/book.service'
+import { BookService } from './shared/services/book.service';
+
+
 import { NewBookComponent } from './new-book.component';
 import { EditBookComponent } from './edit-book.component';
 
@@ -53,10 +55,12 @@ export class BookListComponent implements OnInit, AfterViewInit, OnDestroy {
       if (book) {
         this.bookService.editBook(book)
           .subscribe(response => {
-            if (response.statusCode == 204) {
-              const index = this.books.findIndex((existingBook) => existingBook.id === book.id);
-              this.books[index] = book;
-              this.subject$.next(this.books);
+            if (response.statusCode == 204) {              
+              this.bookService.getAllBooks()
+              .subscribe(records => {
+                this.books = records.map(record => new BookViewModel(records));
+                this.subject$.next(records);
+              });
             } else if (response.statusCode == 409) {
               alert('oops');
             }
@@ -71,9 +75,11 @@ export class BookListComponent implements OnInit, AfterViewInit, OnDestroy {
         this.bookService.addBook(book)
           .subscribe(response => {
             if (response.statusCode == 201) {
-              let book = response.responseBody as BookViewModel;
-              this.books.push(book);
-              this.subject$.next(this.books);
+              this.bookService.getAllBooks()
+              .subscribe(records => {
+                this.books = records.map(record => new BookViewModel(records));
+                this.subject$.next(records);
+              });
             } else if (response.statusCode == 409) {
               alert('oops');
             }

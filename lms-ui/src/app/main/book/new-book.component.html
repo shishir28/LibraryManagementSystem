@@ -13,7 +13,11 @@
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="24px">
       <mat-form-field fxFlex>
         <mat-placeholder>Publisher</mat-placeholder>
-        <input type="text" formControlName="txtPublisherName" matInput>
+        <mat-select formControlName="txtPublisherId" [(value)]="selectedPublisherId">
+            <mat-option *ngFor="let publisher of publishers" [value]="publisher.id">
+              {{ publisher.Name }}
+            </mat-option>
+          </mat-select>
       </mat-form-field>
     </div>
 

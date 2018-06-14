@@ -1,23 +1,6 @@
-import 'automapper-ts/dist/automapper'
-
-import { Book } from './domain/Book';
-import { BookViewModel } from "./adapter/viewModel/bookViewModel";
-
-
-// export class Mapper {
-
-//     constructor() {
-//     }
-
-//     public bootstrapMapping() {
-//         automapper.initialize((config: AutoMapperJs.IConfiguration) => {
-//             config.createMap('Book', 'BookViewModel')
-//                         .forMember('PublisherName', (opts: AutoMapperJs.IMemberConfigurationOptions) => opts.mapFrom('publisher.Name')) ;
-//         });
-
-//     }
-// }
-
+// import {Book} from "./domain/Book";
+// import {BookViewModel } from "./adapter/viewModel/bookViewModel";
+import 'automapper-ts/dist/automapper';
 
 export class AutoMapperBootStrapper {
 
@@ -27,10 +10,7 @@ export class AutoMapperBootStrapper {
     public bootstrap() {
         automapper.initialize((config: AutoMapperJs.IConfiguration) => {
             config.createMap('Book', 'BookViewModel')
-                        .forMember('PublisherName', (opts: AutoMapperJs.IMemberConfigurationOptions) => opts.mapFrom('publisher.Name')) ;
+                .forMember('PublisherName', (opts: AutoMapperJs.IMemberConfigurationOptions) => opts.mapFrom('publisher.Name'));
         });
-
     }
 }
-
-

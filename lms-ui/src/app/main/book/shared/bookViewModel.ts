@@ -10,5 +10,4 @@ export class BookViewModel {
         this.PublisherId = book.PublisherId;
         this.PublisherName = book.PublisherName;
     }
-
 }
