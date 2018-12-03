@@ -14,7 +14,7 @@ export class DBContext {
             host: process.env.DBSERVER || 'LT-5CG6414XQD',
             database: process.env.DBNAME || 'LibMS',
             username: process.env.DBUSER || 'sa',
-            password: process.env.DBPASSWORD || 'test123#',
+            password: process.env.DBPASSWORD || 'mypassword#',
             modelPaths: [modalDir]
         });
 
